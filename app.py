@@ -1,85 +1,44 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
 from flask_sqlalchemy.pagination import Pagination
 from flask_migrate import Migrate
 
+from models import db, FacebookAccount
+
 app = Flask(__name__)
 
 # Configure database
+app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///social.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.environ.get('FLASK_SECRET_KEY', 'default_fallback_key')
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
-
-# Define Account Model
-class FacebookAccount(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    account = db.Column(db.String(100), nullable=False)
-    page_name = db.Column(db.String(100), nullable=False)
-    followers = db.Column(db.Integer, nullable=False)
-    reached = db.Column(db.Integer, nullable=False)
-    page_url = db.Column(db.String(200), nullable=False)
-    created_date = db.Column(db.Date, nullable=False)
-    monetization = db.Column(db.String(20), nullable=False)
-    description = db.Column(db.Text, nullable=True)
-
-    def __repr__(self):
-        return f"<Account {self.account}>"
+db.init_app(app)
 
 
-# Define Account Model
-class GmailAccount(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    gmail = db.Column(db.String(150), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    verified = db.Column(db.String(100), nullable=False)
-    created_date = db.Column(db.Date, nullable=False)
-    status = db.Column(db.String(20), nullable=False)
-    description = db.Column(db.Text, nullable=True)
+@app.context_processor
+def utility_processor():
+    def format_number(num):
+        if num >= 1_000_000:
+            return f'{num / 1_000_000:.1f}M'
+        elif num >= 1_000:
+            return f'{num / 1_000:.1f}K'
+        else:
+            return str(num)
 
-    def __repr__(self):
-        return f"<Gmail {self.name}>"
-
-
-# Define Account Model
-class InstagramAccount(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    account = db.Column(db.String(100), nullable=False)
-    gmail = db.Column(db.String(150), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    followers = db.Column(db.Integer, nullable=False)
-    created_date = db.Column(db.Date, nullable=False)
-    monetization = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.Text, nullable=True)
-
-    def __repr__(self):
-        return f"<Gmail {self.name}>"
-
-
-# Define TikTok Account Model
-class TikTokAccount(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    account = db.Column(db.String(100), nullable=False)
-    gmail = db.Column(db.String(150), nullable=False)
-    password = db.Column(db.String(100), nullable=False)
-    followers = db.Column(db.Integer, nullable=False)
-    created_date = db.Column(db.Date, nullable=False)
-    monetization = db.Column(db.String(120), nullable=False)
-    description = db.Column(db.Text, nullable=True)
-
-    def __repr__(self):
-        return f"<Gmail {self.name}>"
+    return dict(format_number=format_number)
 
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.before_request
+def create_tables():
+    db.create_all()
 
 
 @app.route('/device')
@@ -97,14 +56,27 @@ def device(page=1):
     return render_template('device.html')
 
 
+# @app.route('/facebook')
+# # @app.route('/facebook/page/<int:page>')
+# # @app.route('/page')
+# def facebook(page=1):
+#     # per_page = 10  # Number of items per page
+#     # pagination = GmailAccount.query.paginate(page=page, per_page=per_page, error_out=False)
+#     #
+#     # if page > pagination.pages or page < 1:
+#     #     flash('Invalid page number', 'error')
+#     #     return redirect(url_for('gmail'))
+#     #
+#     # return render_template('gmail.html', items=pagination.items, pagination=pagination)
+#     return render_template('facebook3.html')
+
+
 @app.route('/facebook')
 @app.route('/facebook/page/<int:page>')
-# @app.route('/page')
 def facebook(page=1):
     per_page = 10  # Number of items per page
     pagination = FacebookAccount.query.paginate(page=page, per_page=per_page, error_out=False)
 
-    print(pagination.items)
     if page > pagination.pages or page < 1:
         flash('Invalid page number', 'error')
         return redirect(url_for('facebook'))
@@ -113,15 +85,33 @@ def facebook(page=1):
 
 
 # Route for Adding New Account
+# @app.route('/add_account', methods=['POST'])
+# def add_account():
+#     account = request.form['account']
+#     page_name = request.form['page_name']
+#     followers = request.form['followers']
+#     reached = request.form['reached']
+#     # page_url = request.form['page_url']
+#     created_date = datetime.strptime(request.form['created_date'], '%Y-%m-%d')
+#     monetization = request.form['monetization']
+#     description = request.form.get('description')
+#
+#     new_account = FacebookAccount(account=account, page_name=page_name, followers=followers,
+#                                   reached=reached, created_date=created_date,
+#                                   monetization=monetization, description=description)
+#     db.session.add(new_account)
+#     db.session.commit()
+#
+#     return redirect(url_for('facebook'))
 @app.route('/add_account', methods=['POST'])
 def add_account():
-    account = request.form['account']
-    page_name = request.form['page_name']
-    followers = request.form['followers']
-    reached = request.form['reached']
-    page_url = request.form['page_url']
-    created_date = datetime.strptime(request.form['created_date'], '%Y-%m-%d')
-    monetization = request.form['monetization']
+    account = request.form.get('account')
+    page_name = request.form.get('page_name')
+    followers = request.form.get('followers')
+    reached = request.form.get('reached')
+    page_url = request.form.get('page_url')
+    created_date = request.form.get('created_date')
+    monetization = request.form.get('monetization')
     description = request.form.get('description')
 
     new_account = FacebookAccount(account=account, page_name=page_name, followers=followers,
@@ -129,7 +119,6 @@ def add_account():
                                   monetization=monetization, description=description)
     db.session.add(new_account)
     db.session.commit()
-
     return redirect(url_for('facebook'))
 
 
@@ -300,7 +289,13 @@ def youtube(page=1):
     return render_template('youtube.html')
 
 
+# @app.route('/clear_cookies')
+# def clear_cookies():
+#     session.clear()  # Clears the session cookies
+#     return redirect(url_for('index'))
+
+
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()  # Ensure the database tables are created inside the application context
-    app.run(debug=True)
+    # with app.app_context():
+    #     db.create_all()  # Ensure the database tables are created inside the application context
+    app.run(debug=True, host='0.0.0.0')
