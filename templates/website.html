@@ -1,0 +1,137 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>WEBSITE MANAGEMENT</h1>
+</div>
+
+<div class="content">
+    <!-- Form to Input New Account -->
+    <form method="POST" action="/add_gmail_account">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="gmail">Gmail</label>
+                    <input class="form-control" id="gmail" name="gmail" required/>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="verified">Verified</label>
+                    <input type="text" class="form-control" id="verified" name="verified" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="created_date">Created Date</label>
+                    <input type="date" class="form-control" id="created_date" name="created_date" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" id="status" name="status" required>
+                        <option value="Enable">Enable</option>
+                        <option value="Disabled">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Save Gmail</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Search Filter Section -->
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-4">
+                    <label for="category">Filter By:</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+
+                <!-- Text box for searching -->
+                <div class="col-md-4">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                </div>
+
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table for Account Data -->
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Verified</th>
+            <th>Created Date</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Action</th> <!-- Add Action column -->
+        </tr>
+        </thead>
+        <tbody>
+<!--        {% for item in items %}-->
+<!--        <tr>-->
+<!--            <td>{{ loop.index + (pagination.page - 1) * pagination.per_page }}</td>-->
+<!--            <td>{{ item.name }}</td>-->
+<!--            <td>{{ item.password }}</td>-->
+<!--            <td>{{ item.verified }}</td>-->
+<!--            <td>{{ item.created_date }}</td>-->
+<!--            <td>{{ item.status }}</td>-->
+<!--            <td>{{ item.description }}</td>-->
+<!--            <td>-->
+<!--                <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-sm btn-primary">Edit</a>-->
+<!--                <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}">Delete</a>-->
+<!--                <a href="{{ url_for('view_item', id=item.id) }}" class="btn btn-sm btn-info">View</a>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        {% else %}-->
+<!--        <tr>-->
+<!--            <td colspan="9">No items found</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+        $(document).ready(function() {
+
+        });
+    </script>
+{% endblock %}

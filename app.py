@@ -56,26 +56,41 @@ def device(page=1):
     return render_template('device.html')
 
 
-# @app.route('/facebook')
-# # @app.route('/facebook/page/<int:page>')
-# # @app.route('/page')
-# def facebook(page=1):
-#     # per_page = 10  # Number of items per page
-#     # pagination = GmailAccount.query.paginate(page=page, per_page=per_page, error_out=False)
-#     #
-#     # if page > pagination.pages or page < 1:
-#     #     flash('Invalid page number', 'error')
-#     #     return redirect(url_for('gmail'))
-#     #
-#     # return render_template('gmail.html', items=pagination.items, pagination=pagination)
-#     return render_template('facebook3.html')
+# GMAIL MANAGEMENT
+@app.route('/gmail')
+def gmail(page=1):
+    # per_page = 10  # Number of items per page
+    # pagination = GmailAccount.query.paginate(page=page, per_page=per_page, error_out=False)
+    #
+    # if page > pagination.pages or page < 1:
+    #     flash('Invalid page number', 'error')
+    #     return redirect(url_for('gmail'))
+    #
+    # return render_template('gmail.html', items=pagination.items, pagination=pagination)
+    return render_template('gmail.html')
+
+
+@app.route('/website')
+# @app.route('/instagram/page/<int:page>')
+# @app.route('/page')
+def website(page=1):
+    # per_page = 10  # Number of items per page
+    # pagination = GmailAccount.query.paginate(page=page, per_page=per_page, error_out=False)
+    #
+    # if page > pagination.pages or page < 1:
+    #     flash('Invalid page number', 'error')
+    #     return redirect(url_for('gmail'))
+    #
+    # return render_template('gmail.html', items=pagination.items, pagination=pagination)
+    return render_template('website.html')
 
 
 @app.route('/facebook')
 @app.route('/facebook/page/<int:page>')
 def facebook(page=1):
     per_page = 10  # Number of items per page
-    pagination = FacebookAccount.query.paginate(page=page, per_page=per_page, error_out=False)
+    pagination = FacebookAccount.query.order_by(FacebookAccount.followers.desc()).paginate(page=page, per_page=per_page,
+                                                                                           error_out=False)
 
     if page > pagination.pages or page < 1:
         flash('Invalid page number', 'error')
@@ -180,51 +195,22 @@ def delete_item(id):
     return redirect(url_for('facebook'))
 
 
-# GMAIL MANAGEMENT
-@app.route('/gmail')
-# @app.route('/gmail/page/<int:page>')
-# @app.route('/page')
-def gmail(page=1):
-    # per_page = 10  # Number of items per page
-    # pagination = GmailAccount.query.paginate(page=page, per_page=per_page, error_out=False)
-    #
-    # if page > pagination.pages or page < 1:
-    #     flash('Invalid page number', 'error')
-    #     return redirect(url_for('gmail'))
-    #
-    # return render_template('gmail.html', items=pagination.items, pagination=pagination)
-    return render_template('gmail.html')
-
-
-# @app.route('/gmail')
-# @app.route('/gmail/<int:page>')
-# def gmail(page=1):
-#     per_page = 10  # Number of items per page
-#     pagination = GmailAccount.query.paginate(page=page, per_page=per_page, error_out=False)
-#
-#     if page > pagination.pages or page < 1:
-#         flash('Invalid page number', 'error')
-#         return redirect(url_for('gmail'))
-#
-#     return render_template('gmail.html', items=pagination.items, pagination=pagination)
-
-
 # Route for Adding New Account
 @app.route('/add_gmail_account', methods=['POST'])
 def add_gmail_account():
-    name = request.form['name']
-    gmail = request.form['gmail']
-    password = request.form['password']
-    verified = request.form['verified']
-    created_date = datetime.strptime(request.form['created_date'], '%Y-%m-%d')
-    status = request.form['status']
-    description = request.form.get('description')
-
-    new_account = GmailAccount(name=name, gmail=gmail, password=password, verified=verified,
-                               created_date=created_date, status=status,
-                               description=description)
-    db.session.add(new_account)
-    db.session.commit()
+    # name = request.form['name']
+    # gmail = request.form['gmail']
+    # password = request.form['password']
+    # verified = request.form['verified']
+    # created_date = datetime.strptime(request.form['created_date'], '%Y-%m-%d')
+    # status = request.form['status']
+    # description = request.form.get('description')
+    #
+    # new_account = GmailAccount(name=name, gmail=gmail, password=password, verified=verified,
+    #                            created_date=created_date, status=status,
+    #                            description=description)
+    # db.session.add(new_account)
+    # db.session.commit()
 
     return redirect(url_for('gmail'))
 
