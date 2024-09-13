@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAX FARM</title>
+
+    <!-- Add your AdminLTE CSS and other required stylesheets here -->
+    <link rel="stylesheet" href="/static/AdminLTE/css/adminlte.min.css">
+    <link rel="stylesheet" href="/static/AdminLTE/plugins/fontawesome-free/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Other navbar content -->
+        </nav>
+
+        <!-- Sidebar -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="/" class="brand-link">
+                <span class="brand-text font-weight-light">MAX FARM</span>
+            </a>
+            <div class="sidebar">
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column">
+                        <li class="nav-item">
+                            <a href="{{ url_for('device') }}" class="nav-link">
+                                <i class="nav-icon fas fa-mobile-alt"></i> <!-- Font Awesome Icon -->
+                                <p>Device Management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('gmail') }}" class="nav-link">
+                                <i class="nav-icon fas fa-envelope"></i> <!-- Font Awesome Icon -->
+                                <p>Gmail Management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('facebook') }}" class="nav-link">
+                                <i class="av-icon fab fa-facebook"></i> <!-- Font Awesome Icon -->
+                                <p>Facebook Management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('instagram') }}" class="nav-link">
+                                <i class="nav-icon fab fa-instagram"></i> <!-- Font Awesome Icon -->
+                                <p>Instagram Management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('threads') }}" class="nav-link">
+                                <i class="nav-icon fas fa-comments"></i> <!-- Font Awesome Icon -->
+                                <p>Threads Management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('youtube') }}" class="nav-link">
+                                <i class="nav-icon fab fa-youtube"></i> <!-- Font Awesome Icon -->
+                                <p>Youtube Management</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('tiktok') }}" class="nav-link">
+                                <i class="nav-icon fab fa-tiktok"></i> <!-- Font Awesome Icon -->
+                                <p>TikTok Management</p>
+                            </a>
+                        </li>
+<!--                        <li class="nav-item"><a href="{{ url_for('gmail') }}" class="nav-link">Gmail Management</a></li>-->
+<!--                        <li class="nav-item"><a href="{{ url_for('facebook') }}" class="nav-link">Facebook Management</a></li>-->
+<!--                        <li class="nav-item"><a href="{{ url_for('instagram') }}" class="nav-link">Instagram Management</a></li>-->
+<!--                        <li class="nav-item"><a href="{{ url_for('threads') }}" class="nav-link">Threads Management</a></li>-->
+<!--                        <li class="nav-item"><a href="{{ url_for('youtube') }}" class="nav-link">YouTube Management</a></li>-->
+<!--                        <li class="nav-item"><a href="{{ url_for('tiktok') }}" class="nav-link">TikTok Management</a></li>-->
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            {% block content %}
+            <!-- Page content will go here -->
+            {% endblock %}
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <strong>CPU &copy; 10%<a href="#">RAM : 5%</a>.</strong>
+        </footer>
+    </div>
+
+    <!-- Add your AdminLTE JS and other required scripts here -->
+    <script src="/static/AdminLTE/plugins/jquery/jquery.min.js"></script>
+    <script src="/static/AdminLTE/js/adminlte.min.js"></script>
+    <!-- Block for child page-specific scripts -->
+    {% block scripts %}{% endblock %}
+</body>
+</html>

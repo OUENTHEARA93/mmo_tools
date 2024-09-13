@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>Instagram Management</h1>
+</div>
+
+<div class="content">
+    <!-- Form Section -->
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="account">Account</label>
+                    <input type="text" class="form-control" id="account" name="account" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="gmail">Gmail</label>
+                    <input type="text" class="form-control" id="gmail" name="gmail" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" name="password" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="followers">Followers/Friends</label>
+                    <input type="number" class="form-control" id="followers" name="followers" required>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="created_date">Created Date</label>
+                    <input type="date" class="form-control" id="created_date" name="created_date" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="monetization">Monetization</label>
+                    <select class="form-control" id="monetization" name="monetization" required>
+                        <option value="Enable">Enable</option>
+                        <option value="Disabled">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Save Account</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Search Filter Section -->
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-4">
+                    <label for="category">Filter By:</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+
+                <!-- Text box for searching -->
+                <div class="col-md-4">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                </div>
+
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Table Section -->
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Gmail</th>
+            <th>Password</th>
+            <th>Followers</th>
+            <th>Created Date</th>
+            <th>Monetization</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+        <tr>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- System Performance Section -->
+    <!--    <div class="mt-4">-->
+    <!--        <label>CPU Performance:</label><br>-->
+    <!--        <label>RAM Performance:</label>-->
+    <!--    </div>-->
+</div>
+{% endblock %}

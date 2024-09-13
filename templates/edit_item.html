@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>FACEBOOK MANAGEMENT</h1>
+</div>
+
+<div class="content">
+<!--    <form method="POST">-->
+<!--        <label>Account</label>-->
+<!--        <input type="text" name="account" value="{{ item.account }}" class="form-control">-->
+<!--        <label>Page Name</label>-->
+<!--        <input type="text" name="page_name" value="{{ item.page_name }}" class="form-control">-->
+<!--        &lt;!&ndash; Include other fields similarly &ndash;&gt;-->
+<!--        <button type="submit" class="btn btn-success">Save</button>-->
+<!--    </form>-->
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="account">Account</label>
+                    <input type="text" class="form-control" id="account" name="account" value="{{ item.account }}" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="page_name">Page Name</label>
+                    <input type="text" class="form-control" id="page_name" name="page_name" value="{{ item.page_name }}" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="followers">Followers/Friends</label>
+                    <input type="number" class="form-control" id="followers" name="followers" value="{{ item.followers }}" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="reached">Reached</label>
+                    <input type="number" class="form-control" id="reached" name="reached" value="{{ item.reached }}" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="created_date">Created Date</label>
+                    <input type="date" class="form-control" id="created_date" name="created_date" value="{{ item.created_date }}" required>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="monetization">Monetization</label>
+                    <select class="form-control" id="monetization" name="monetization"  required>
+                        <option value="{{ item.monetization }}">{{ item.monetization }}</option>
+                        <option value="Restricted">Restricted</option>
+                        <option value="Flagged">Flagged</option>
+                        <option value="Disabled">Disabled</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ item.description }}</textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Update Account</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

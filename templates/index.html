@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>Device MANAGEMENT</h1>
+</div>
+
+<div class="content">
+    <!-- Content -->
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <h1>Device Manager</h1>
+                <button id="check_status_btn">Check Device Status</button>
+                <div id="device_status"></div>
+            </div>
+        </section>
+    </div>
+    {% endblock %}
+    {% block scripts %}
+    <script>
+        $(document).ready(function () {
+            // Connect to LDPlayer
+            $('#connect_ldplayer_btn').click(function () {
+                $.post('/connect_ldplayer', function (data) {
+                    alert(data.status);
+                });
+            });
+
+            // Connect to Real Device
+            $('#connect_real_device_btn').click(function () {
+                $.post('/connect_real_device', function (data) {
+                    alert(data.status);
+                });
+            });
+
+            // Check device status
+            $('#check_status_btn').click(function () {
+                $.get('/check_device_status', function (data) {
+                    $('#device_status').html('<pre>' + data.devices + '</pre>');
+                });
+            });
+        });
+    </script>
+</div>
+{% endblock %}

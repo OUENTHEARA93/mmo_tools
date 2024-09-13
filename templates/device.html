@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>Device Management</h1>
+</div>
+
+<div class="content">
+
+    <!-- Search Filter Section -->
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-4">
+                    <label for="category">Filter By:</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+
+                <!-- Text box for searching -->
+                <div class="col-md-4">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                </div>
+
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Table Section -->
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>IP Address</th>
+            <th>Location</th>
+            <th>Apps</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+        <tr>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- System Performance Section -->
+    <!--    <div class="mt-4">-->
+    <!--        <label>CPU Performance:</label><br>-->
+    <!--        <label>RAM Performance:</label>-->
+    <!--    </div>-->
+</div>
+{% endblock %}
