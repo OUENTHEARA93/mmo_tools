@@ -150,7 +150,7 @@
                     <img src="{{ url_for('static', filename='AdminLTE/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Admin User</a>
+                    <a href="#" class="d-block">Oeun Thear</a>
                 </div>
             </div>
 
@@ -195,6 +195,21 @@
                         </a>
                     </li>
 
+                    <!-- YouTube Management -->
+                    <li class="nav-item">
+                        <a href="{{ url_for('youtube') }}" class="nav-link">
+                            <i class="nav-icon fab fa-youtube"></i>
+                            <p>YouTube Management</p>
+                        </a>
+                    </li>
+
+                    <!-- TikTok Management -->
+                    <li class="nav-item">
+                        <a href="{{ url_for('tiktok') }}" class="nav-link">
+                            <i class="nav-icon fab fa-tiktok"></i>
+                            <p>TikTok Management</p>
+                        </a>
+                    </li>
                     <!-- Facebook Management -->
                     <li class="nav-item">
                         <a href="{{ url_for('facebook') }}" class="nav-link">
@@ -219,21 +234,22 @@
                         </a>
                     </li>
 
-                    <!-- YouTube Management -->
+                    <!-- Content Management -->
                     <li class="nav-item">
-                        <a href="{{ url_for('youtube') }}" class="nav-link">
-                            <i class="nav-icon fab fa-youtube"></i>
-                            <p>YouTube Management</p>
+                        <a href="{{ url_for('content') }}" class="nav-link">
+                            <i class="nav-icon fas fa-folder"></i>
+                            <p>Content Management</p>
                         </a>
                     </li>
 
-                    <!-- TikTok Management -->
+                    <!-- Editor Management -->
                     <li class="nav-item">
-                        <a href="{{ url_for('tiktok') }}" class="nav-link">
-                            <i class="nav-icon fab fa-tiktok"></i>
-                            <p>TikTok Management</p>
+                        <a href="{{ url_for('editor') }}" class="nav-link">
+                            <i class="nav-icon fas fa-file-video"></i>
+                            <p>Editor Management</p>
                         </a>
                     </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

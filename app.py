@@ -1,4 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+import logging
+
+import yt_dlp
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import os
@@ -275,10 +278,49 @@ def youtube(page=1):
     return render_template('youtube.html')
 
 
-# @app.route('/clear_cookies')
-# def clear_cookies():
-#     session.clear()  # Clears the session cookies
-#     return redirect(url_for('index'))
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+
+@app.route('/content')
+# @app.route('/instagram/page/<int:page>')
+# @app.route('/page')
+def content(page=1):
+    return render_template('content.html')
+
+
+@app.route('/download', methods=['POST'])
+def download():
+    save_as = request.form.get('save_as')
+    video_size = request.form.get('video_size')
+    folder_name = request.form.get('folder_name')
+    video_links = request.form.get('video_links').strip().split('\n')
+
+    download_path = os.path.join('downloads', folder_name)
+    os.makedirs(download_path, exist_ok=True)
+
+    # Configure yt-dlp options based on user input
+    ydl_opts = {
+        'format': f'bestvideo[height<={video_size}]+bestaudio/best[height<={video_size}]',
+        'outtmpl': os.path.join(download_path, f'%(title)s.%(ext)s'),
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3' if save_as == 'MP3' else 'mp4',
+        }] if save_as == 'MP3' else None
+    }
+
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        ydl.download(video_links)
+
+    # Here you might want to return something more meaningful, like a success message or link to the downloaded files
+    return jsonify({'message': 'Download started, check server for output'})
+
+
+@app.route('/editor')
+# @app.route('/instagram/page/<int:page>')
+# @app.route('/page')
+def editor(page=1):
+    return render_template('editor.html')
 
 
 if __name__ == "__main__":
