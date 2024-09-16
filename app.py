@@ -10,13 +10,14 @@ from flask_migrate import Migrate
 
 from models import db, FacebookAccount
 
-app = Flask(__name__)
-
 # Configure database
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///social.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default_secret_key')
+
+BASE_FOLDER_PATH = 'D:\\2024_Content Editor'
 
 db.init_app(app)
 
@@ -283,18 +284,59 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 
 @app.route('/content')
-# @app.route('/instagram/page/<int:page>')
-# @app.route('/page')
+@app.route('/content/page/<int:page>')
 def content(page=1):
-    return render_template('content.html')
+    files = get_files_and_folders(BASE_FOLDER_PATH)
+    files.pop(0)
+    # per_page = 10  # Number of items per page
+    # pagination = None
+    # pages = 0
+    # if page > pagination.pages or page < 1:
+    #     flash('Invalid page number', 'error')
+    #     return redirect(url_for('content'))
+
+    return render_template('content.html', files=files)
+
+
+@app.route('/filter', methods=['POST'])
+def filter_files():
+    folder_name = request.form.get('folderName')
+    search_keyword = request.form.get('keyword')
+
+    # Apply filters based on user input
+    files = get_files_and_folders(BASE_FOLDER_PATH, folder_name, search_keyword)
+
+    return render_template('content.html', files=files)
+
+
+def get_files_and_folders(base_path, folder_name=None, search_keyword=None):
+    """Fetch all files and folders from the directory."""
+    folder_list = []
+
+    for folder_name, subfolders, files in os.walk(base_path):
+        folder_info = {
+            'name': os.path.basename(folder_name),
+            'path': folder_name,
+            'status': 'Active',  # You can modify this based on your logic
+            'size': '30G',  # sum(os.path.getsize(os.path.join(folder_name, f)) for f in files),
+            # Total size of files in the folder
+            'videos': '50K',  # len([f for f in files if f.endswith(('.mp4', '.mkv', '.avi'))]),
+            'photos': '10K',  # len([f for f in files if f.endswith(('.jpg', '.png', '.jpeg'))]),
+            'description': 'Folder description'  # Customize as per requirement
+        }
+        # if (not folder_name or folder_name.lower() in folder_info['name'].lower()) and \
+        #         (not search_keyword or search_keyword.lower() in folder_info['name'].lower()):
+        folder_list.append(folder_info)
+
+    return folder_list
 
 
 @app.route('/download', methods=['POST'])
 def download():
-    save_as = request.form.get('save_as')
+    save_as = request.form.get('savefile')
     video_size = request.form.get('video_size')
-    folder_name = request.form.get('folder_name')
-    video_links = request.form.get('video_links').strip().split('\n')
+    folder_name = request.form.get('folderName')
+    video_links = request.form.get('videoLinks').strip().split('\n')
 
     download_path = os.path.join('downloads', folder_name)
     os.makedirs(download_path, exist_ok=True)
@@ -303,24 +345,34 @@ def download():
     ydl_opts = {
         'format': f'bestvideo[height<={video_size}]+bestaudio/best[height<={video_size}]',
         'outtmpl': os.path.join(download_path, f'%(title)s.%(ext)s'),
+        'retries': 10,
+        'socket_timeout': 30,
+        'noprogress': True,  # Disable progress reporting
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3' if save_as == 'MP3' else 'mp4',
-        }] if save_as == 'MP3' else None
+        }] if save_as == 'MP3' else []  # Ensure postprocessors is an empty list if not 'MP3'
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download(video_links)
 
-    # Here you might want to return something more meaningful, like a success message or link to the downloaded files
     return jsonify({'message': 'Download started, check server for output'})
 
 
 @app.route('/editor')
-# @app.route('/instagram/page/<int:page>')
-# @app.route('/page')
 def editor(page=1):
     return render_template('editor.html')
+
+
+@app.route('/facebook/post-reels')
+def post_reels(page=1):
+    return render_template('post_reels.html')
+
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 
 if __name__ == "__main__":

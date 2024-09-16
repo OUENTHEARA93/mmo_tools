@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="content-header">
-    <h1>Content Management</h1>
+    <h1>CONTENT MANAGEMENT</h1>
 </div>
 
 <div class="content">
@@ -11,8 +11,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label for="description">Video Links:</label>
-                    <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+                    <label for="videoLinks">Video Links:</label>
+                    <textarea class="form-control" id="videoLinks" name="videoLinks" rows="4"></textarea>
                 </div>
             </div>
             <div class="col-md-2">
@@ -93,19 +93,21 @@
         </tr>
         </thead>
         <tbody>
-        {% for account in accounts %}
+        {% for file in files %}
         <tr>
-
+            <td>{{ loop.index }}</td>
+            <td>{{ file.name }}</td>
+            <td>{{ file.path }}</td>
+            <td>{{ file.status }}</td>
+            <td>{{ file.size }} KB</td>
+            <td>{{ file.videos }}</td>
+            <td>{{ file.photos }}</td>
+            <td>{{ file.description }}</td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <!-- System Performance Section -->
-    <!--    <div class="mt-4">-->
-    <!--        <label>CPU Performance:</label><br>-->
-    <!--        <label>RAM Performance:</label>-->
-    <!--    </div>-->
 </div>
 {% endblock %}
 {% block scripts %}

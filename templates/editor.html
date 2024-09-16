@@ -2,53 +2,53 @@
 
 {% block content %}
 <div class="content-header">
-    <h1>Youtube Management</h1>
+    <h1>EDITOR MANAGEMENT</h1>
 </div>
 
 <div class="content">
     <!-- Form Section -->
     <form method="POST">
         <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="account">Account</label>
-                    <input type="text" class="form-control" id="account" name="account" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="gmail">Gmail</label>
-                    <input type="text" class="form-control" id="gmail" name="gmail" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control" id="password" name="password" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="subscribers">Subscribers</label>
-                    <input type="number" class="form-control" id="subscribers" name="subscribers" required>
-                </div>
-            </div>
+<!--            <div class="col-md-2">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="account">Account</label>-->
+<!--                    <input type="text" class="form-control" id="account" name="account" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-2">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="gmail">Gmail</label>-->
+<!--                    <input type="text" class="form-control" id="gmail" name="gmail" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-2">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="password">Password</label>-->
+<!--                    <input type="text" class="form-control" id="password" name="password" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-2">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="subscribers">Subscribers</label>-->
+<!--                    <input type="number" class="form-control" id="subscribers" name="subscribers" required>-->
+<!--                </div>-->
+<!--            </div>-->
 
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="created_date">Created Date</label>
-                    <input type="date" class="form-control" id="created_date" name="created_date" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="monetization">Monetization</label>
-                    <select class="form-control" id="monetization" name="monetization" required>
-                        <option value="Enable">Enable</option>
-                        <option value="Disabled">Disabled</option>
-                    </select>
-                </div>
-            </div>
+<!--            <div class="col-md-2">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="created_date">Created Date</label>-->
+<!--                    <input type="date" class="form-control" id="created_date" name="created_date" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-2">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="monetization">Monetization</label>-->
+<!--                    <select class="form-control" id="monetization" name="monetization" required>-->
+<!--                        <option value="Enable">Enable</option>-->
+<!--                        <option value="Disabled">Disabled</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="description">Description</label>
@@ -96,20 +96,32 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Gmail</th>
-            <th>Password</th>
-            <th>Subscribers</th>
+            <th>Path</th>
+            <th>Videos</th>
+            <th>Photos</th>
             <th>Created Date</th>
-            <th>Monetization</th>
+            <th>Action</th>
             <th>Description</th>
         </tr>
         </thead>
         <tbody>
-        {% for account in accounts %}
-        <tr>
 
-        </tr>
-        {% endfor %}
+            <tr>
+                <td>001</td>
+                <td>Baby Love</td>
+                <td>C://videos//baby192</td>
+                <td>1.2K</td>
+                <td>5.2K</td>
+                <td>10-09-2024</td>
+                <td>Post page schedule</td>
+                <td>
+                    <a class="btn btn-sm btn-primary">Edit</a>
+                    <a class="btn btn-sm btn-danger">Delete</a>
+                    <a class="btn btn-sm btn-info">View</a>
+                </td>
+
+            </tr>
+
         </tbody>
     </table>
 
