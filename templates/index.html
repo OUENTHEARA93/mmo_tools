@@ -2,45 +2,344 @@
 
 {% block content %}
 <div class="content-header">
-    <h1>Device MANAGEMENT</h1>
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
-
 <div class="content">
-    <!-- Content -->
-    <div class="content-wrapper">
-        <section class="content">
-            <div class="container-fluid">
-                <h1>Device Manager</h1>
-                <button id="check_status_btn">Check Device Status</button>
-                <div id="device_status"></div>
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>$9,500</h3>
+
+                    <p>META Group</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a class="small-box-footer" href="#">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </section>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>$19,500</h3>
+
+                    <p>Youtube</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a class="small-box-footer" href="#">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-gray-dark">
+                <div class="inner">
+                    <h3>$2,500</h3>
+
+                    <p>TikTok</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a class="small-box-footer" href="#">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>$3,950</h3>
+
+                    <p>Website</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a class="small-box-footer" href="#">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- ./col -->
     </div>
-    {% endblock %}
-    {% block scripts %}
-    <script>
-        $(document).ready(function () {
-            // Connect to LDPlayer
-            $('#connect_ldplayer_btn').click(function () {
-                $.post('/connect_ldplayer', function (data) {
-                    alert(data.status);
-                });
-            });
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-4">
+                    <label for="category">Filter By:</label>
+                    <select class="form-control" id="category" name="category">
+                        <option value="">All</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="YouTube">YouTube</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="TikTok">Instagram</option>
+                        <option value="Threads">Threads</option>
+                        <option value="Website">Website</option>
+                    </select>
+                </div>
 
-            // Connect to Real Device
-            $('#connect_real_device_btn').click(function () {
-                $.post('/connect_real_device', function (data) {
-                    alert(data.status);
-                });
-            });
+                <!-- Text box for searching -->
+                <div class="col-md-4">
+                    <label for="search">Search:</label>
+                    <input class="form-control" id="search" name="search" placeholder="Enter keyword..." type="text">
+                </div>
 
-            // Check device status
-            $('#check_status_btn').click(function () {
-                $.get('/check_device_status', function (data) {
-                    $('#device_status').html('<pre>' + data.devices + '</pre>');
-                });
-            });
-        });
-    </script>
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary btn-block" type="submit">Filter</button>
+                </div>
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-warning btn-block" type="button">Export File</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Traffic</th>
+            <th>Earning</th>
+            <th>Website</th>
+            <th>Last Check</th>
+            <th>Monetization</th>
+            <th>Description</th>
+            <th>Action</th> <!-- Add Action column -->
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>1</td>
+            <td>Clips</td>
+            <td>Facebook - Bonus</td>
+            <td>1.1M</td>
+            <td><b>$2.3K</b></td>
+            <td>cartoonfun.site</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td>Baby Clips</td>
+            <td>Facebook - Bonus</td>
+            <td>1.1M</td>
+            <td><b>$2.3K</b></td>
+            <td>babynews26.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Evelyn Harrell</td>
+            <td>Facebook - Bonus</td>
+            <td>16.1M</td>
+            <td><b>$1.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Neymar</td>
+            <td>Facebook - Bonus</td>
+            <td>88.1M</td>
+            <td><b>$6.3K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Media Idol</td>
+            <td>Facebook - Bonus</td>
+            <td>3.1M</td>
+            <td><b>$1.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Panther</td>
+            <td>Facebook - Bonus</td>
+            <td>83.1M</td>
+            <td><b>$4.3K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Family Alita</td>
+            <td>Facebook - Bonus</td>
+            <td>66.1M</td>
+            <td><b>$4.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Clip Earn</td>
+            <td>Facebook - Bonus</td>
+            <td>66.1M</td>
+            <td><b>$5.3K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Melton Cleta</td>
+            <td>Facebook - Bonus</td>
+            <td>46.1M</td>
+            <td><b>$3.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Blick Kearney</td>
+            <td>Facebook - Bonus</td>
+            <td>78.1M</td>
+            <td><b>$3.2K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+
+
+            <li class="page-item active">
+                <a class="page-link" href="/facebook/page/1">1</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/2">2</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/3">3</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/4">4</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/5">5</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/10">10</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/11">11</a>
+            </li>
+
+
+            <li class="page-item">
+                <a class="page-link" href="/facebook/page/2">Next</a>
+            </li>
+
+        </ul>
+    </nav>
 </div>
 {% endblock %}

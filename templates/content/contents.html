@@ -1,0 +1,134 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>CONTENT MANAGEMENT</h1>
+</div>
+
+<div class="content">
+    <!-- Form Section -->
+    <form id="download-form" method="POST">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="videoLinks">Video Links:</label>
+                    <textarea class="form-control" id="videoLinks" name="videoLinks" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="savefile">Save File as</label>
+                    <select class="form-control" id="savefile" name="savefile" required>
+                        <option value="MP3">MP3</option>
+                        <option value="MP4">MP4</option>
+                        <option value="AVI">AVI</option>
+                        <option value="MKV">MKV</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="video_size">Video Size:</label>
+                    <select class="form-control" id="video_size" name="video_size" required>
+                        <option value="1080">1080</option>
+                        <option value="720">720</option>
+                        <option value="2K">2K</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="folderName">Folder Name</label>
+                    <input type="text" class="form-control" id="folderName" name="folderName" required>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-primary">Download</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Search Filter Section -->
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-4">
+                    <label for="category">Filter By:</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+
+                <!-- Text box for searching -->
+                <div class="col-md-4">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                </div>
+
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Table Section -->
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Folder Name</th>
+            <th>Path</th>
+            <th>Status</th>
+            <th>Size</th>
+            <th>Videos</th>
+            <th>Photos</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ file.name }}</td>
+            <td>{{ file.path }}</td>
+            <td>{{ file.status }}</td>
+            <td>{{ file.size }} KB</td>
+            <td>{{ file.videos }}</td>
+            <td>{{ file.photos }}</td>
+            <td>{{ file.description }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
+{% block scripts %}
+
+<script>
+document.getElementById('download-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        fetch('/download', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // Handle response and update table or show success message
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    });
+
+</script>
+{% endblock %}

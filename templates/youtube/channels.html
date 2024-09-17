@@ -2,23 +2,23 @@
 
 {% block content %}
 <div class="content-header">
-    <h1>GMAIL MANAGEMENT</h1>
+    <h1>YOUTUBE EARNING</h1>
 </div>
 
 <div class="content">
-    <!-- Form to Input New Account -->
-    <form method="POST" action="/add_gmail_account">
+    <!-- Form Section -->
+    <form method="POST">
         <div class="row">
             <div class="col-md-2">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <label for="account">Account</label>
+                    <input type="text" class="form-control" id="account" name="account" required>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="gmail">Gmail</label>
-                    <input class="form-control" id="gmail" name="gmail" required/>
+                    <input type="text" class="form-control" id="gmail" name="gmail" required>
                 </div>
             </div>
             <div class="col-md-2">
@@ -29,10 +29,11 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    <label for="verified">Verified</label>
-                    <input type="text" class="form-control" id="verified" name="verified" required>
+                    <label for="subscribers">Subscribers</label>
+                    <input type="number" class="form-control" id="subscribers" name="subscribers" required>
                 </div>
             </div>
+
             <div class="col-md-2">
                 <div class="form-group">
                     <label for="created_date">Created Date</label>
@@ -41,21 +42,21 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <select class="form-control" id="status" name="status" required>
+                    <label for="monetization">Monetization</label>
+                    <select class="form-control" id="monetization" name="monetization" required>
                         <option value="Enable">Enable</option>
                         <option value="Disabled">Disabled</option>
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                 </div>
             </div>
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Save Gmail</button>
+                <button type="submit" class="btn btn-primary">Save Account</button>
             </div>
         </div>
     </form>
@@ -88,50 +89,34 @@
         </form>
     </div>
 
-    <!-- Table for Account Data -->
+
+    <!-- Table Section -->
     <table class="table table-bordered mt-4">
         <thead>
         <tr>
             <th>No</th>
             <th>Name</th>
+            <th>Gmail</th>
             <th>Password</th>
-            <th>Verified</th>
+            <th>Subscribers</th>
             <th>Created Date</th>
-            <th>Status</th>
+            <th>Monetization</th>
             <th>Description</th>
-            <th>Action</th> <!-- Add Action column -->
         </tr>
         </thead>
         <tbody>
-<!--        {% for item in items %}-->
-<!--        <tr>-->
-<!--            <td>{{ loop.index + (pagination.page - 1) * pagination.per_page }}</td>-->
-<!--            <td>{{ item.name }}</td>-->
-<!--            <td>{{ item.password }}</td>-->
-<!--            <td>{{ item.verified }}</td>-->
-<!--            <td>{{ item.created_date }}</td>-->
-<!--            <td>{{ item.status }}</td>-->
-<!--            <td>{{ item.description }}</td>-->
-<!--            <td>-->
-<!--                <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-sm btn-primary">Edit</a>-->
-<!--                <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}">Delete</a>-->
-<!--                <a href="{{ url_for('view_item', id=item.id) }}" class="btn btn-sm btn-info">View</a>-->
-<!--            </td>-->
-<!--        </tr>-->
-<!--        {% else %}-->
-<!--        <tr>-->
-<!--            <td colspan="9">No items found</td>-->
-<!--        </tr>-->
-<!--        {% endfor %}-->
+        {% for account in accounts %}
+        <tr>
+
+        </tr>
+        {% endfor %}
         </tbody>
     </table>
 
+    <!-- System Performance Section -->
+    <!--    <div class="mt-4">-->
+    <!--        <label>CPU Performance:</label><br>-->
+    <!--        <label>RAM Performance:</label>-->
+    <!--    </div>-->
 </div>
-{% endblock %}
-{% block scripts %}
-<script>
-        $(document).ready(function() {
-
-        });
-    </script>
 {% endblock %}

@@ -2,57 +2,64 @@
 
 {% block content %}
 <div class="content-header">
-    <h1>Youtube Management</h1>
+    <h1>FACEBOOK REGISTER</h1>
 </div>
 
 <div class="content">
-    <!-- Form Section -->
-    <form method="POST">
+    <!-- Form to Input New Account -->
+    <form method="POST" action="/add_account">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="account">Account</label>
                     <input type="text" class="form-control" id="account" name="account" required>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label for="gmail">Gmail</label>
-                    <input type="text" class="form-control" id="gmail" name="gmail" required>
+                    <label for="page_name">Page Name</label>
+                    <input type="text" class="form-control" id="page_name" name="page_name" required>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control" id="password" name="password" required>
+                    <label for="followers">Followers/Friends</label>
+                    <input type="number" class="form-control" id="followers" name="followers" required>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label for="subscribers">Subscribers</label>
-                    <input type="number" class="form-control" id="subscribers" name="subscribers" required>
+                    <label for="reached">Reached</label>
+                    <input type="number" class="form-control" id="reached" name="reached" required>
                 </div>
             </div>
-
-            <div class="col-md-2">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="url">Page Url</label>
+                    <input type="text" class="form-control" id="url" name="url" required>
+                </div>
+            </div>
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="created_date">Created Date</label>
                     <input type="date" class="form-control" id="created_date" name="created_date" required>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="monetization">Monetization</label>
                     <select class="form-control" id="monetization" name="monetization" required>
                         <option value="Enable">Enable</option>
+                        <option value="Restricted">Restricted</option>
+                        <option value="Flagged">Flagged</option>
                         <option value="Disabled">Disabled</option>
                     </select>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="2"></textarea>
                 </div>
             </div>
             <div class="col-md-12">
@@ -70,7 +77,9 @@
                     <label for="category">Filter By:</label>
                     <select id="category" name="category" class="form-control">
                         <option value="">All</option>
-                        <option value="name">Name</option>
+                        <option value="Category1">Page(Name or ID)</option>
+                        <option value="Category2">Account</option>
+                        <option value="Category3">Monetization</option>
                     </select>
                 </div>
 
@@ -85,38 +94,42 @@
                     <label>&nbsp;</label>
                     <button type="submit" class="btn btn-primary btn-block">Filter</button>
                 </div>
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="button" class="btn btn-warning btn-block">Export File</button>
+                </div>
             </div>
         </form>
     </div>
+    <span></span>
 
 
-    <!-- Table Section -->
+    <!-- Table for Account Data -->
     <table class="table table-bordered mt-4">
         <thead>
         <tr>
             <th>No</th>
-            <th>Name</th>
-            <th>Gmail</th>
-            <th>Password</th>
-            <th>Subscribers</th>
-            <th>Created Date</th>
+            <th>Account</th>
+            <th>Page Name</th>
+            <th>Follower/Friends</th>
+            <th>Reached</th>
+            <th>Page ID</th>
+            <th>Last Check</th>
             <th>Monetization</th>
             <th>Description</th>
+            <th>Action</th> <!-- Add Action column -->
         </tr>
         </thead>
         <tbody>
-        {% for account in accounts %}
-        <tr>
 
-        </tr>
-        {% endfor %}
         </tbody>
     </table>
 
-    <!-- System Performance Section -->
-    <!--    <div class="mt-4">-->
-    <!--        <label>CPU Performance:</label><br>-->
-    <!--        <label>RAM Performance:</label>-->
-    <!--    </div>-->
 </div>
+{% endblock %}
+{% block scripts %}
+<script>
+
+</script>
 {% endblock %}

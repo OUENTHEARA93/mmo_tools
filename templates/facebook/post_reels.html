@@ -1,0 +1,131 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="content-header">
+    <h1>DEVICE MANAGEMENT</h1>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <!-- Automation Controls -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <!-- First row of checkboxes -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Watch Video</label>
+                                        <input type="number" class="form-control" placeholder="Minutes">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Marketplace</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Like Post</label>
+                                        <input type="number" class="form-control" placeholder="Likes">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Newsfeed</label>
+                                        <input type="number" class="form-control" placeholder="Minutes">
+                                    </div>
+                                </div>
+                                <!-- Second row of checkboxes -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Mute</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Add Friends</label>
+                                        <input type="number" class="form-control" placeholder="Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Delay Post</label>
+                                        <input type="number" class="form-control" placeholder="Seconds">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="form-group">
+                                <button type="button" class="btn btn-success">Start</button>
+                                <button type="button" class="btn btn-danger">Stop</button>
+                                <button type="button" class="btn btn-info">Run Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Account Table -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Account Details</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>UID</th>
+                                <th>Email</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Dynamic data rows go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search & Add Account -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form class="form-inline">
+                            <input type="text" class="form-control mr-2" placeholder="Search...">
+                            <button type="button" class="btn btn-primary">Search</button>
+                            <button type="button" class="btn btn-secondary ml-2">Add Account</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Table for Account Data -->
+                <table class="table table-bordered mt-4">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Account</th>
+                        <th>Page Name</th>
+                        <th>Follower/Friends</th>
+                        <th>Reached</th>
+                        <th>Page ID</th>
+                        <th>Last Check</th>
+                        <th>Monetization</th>
+                        <th>Description</th>
+                        <th>Action</th> <!-- Add Action column -->
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <!-- Pagination Controls -->
+                <nav aria-label="Page navigation">
+
+                </nav>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
