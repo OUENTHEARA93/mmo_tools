@@ -100,27 +100,19 @@ def facebook(page=1):
         flash('Invalid page number', 'error')
         return redirect(url_for('facebook'))
 
-    return render_template('facebook.html', items=pagination.items, pagination=pagination)
+    return render_template('/facebook/page.html', items=pagination.items, pagination=pagination)
 
 
-# Route for Adding New Account
-# @app.route('/add_account', methods=['POST'])
-# def add_account():
-#     account = request.form['account']
-#     page_name = request.form['page_name']
-#     followers = request.form['followers']
-#     reached = request.form['reached']
-#     # page_url = request.form['page_url']
-#     created_date = datetime.strptime(request.form['created_date'], '%Y-%m-%d')
-#     monetization = request.form['monetization']
-#     description = request.form.get('description')
-#
-#     new_account = FacebookAccount(account=account, page_name=page_name, followers=followers,
-#                                   reached=reached, created_date=created_date,
-#                                   monetization=monetization, description=description)
-#     db.session.add(new_account)
-#     db.session.commit()
-#
+@app.route('/facebook/register')
+def register_account():
+    return render_template('/facebook/register_account.html')
+
+
+@app.route('/facebook/post_reels')
+def post_reels():
+    return render_template('/facebook/post_reels.html')
+
+
 #     return redirect(url_for('facebook'))
 @app.route('/add_account', methods=['POST'])
 def add_account():
@@ -145,7 +137,7 @@ def add_account():
 @app.route("/view/<int:id>")
 def view_item(id):
     account = FacebookAccount.query.get_or_404(id)
-    return render_template("view_item.html", item=account)
+    return render_template("/facebook/view_page.html", item=account)
 
 
 # Edit Item
@@ -186,7 +178,7 @@ def edit_item(id):
 #     items = query.all()
 #
 #     # Return the updated rows as part of the AJAX response
-#     return render_template('facebook.html', items=items)
+#     return render_template('page.html', items=items)
 
 
 # Delete Item
@@ -365,9 +357,14 @@ def editor(page=1):
     return render_template('editor.html')
 
 
-@app.route('/facebook/post-reels')
-def post_reels(page=1):
-    return render_template('post_reels.html')
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
+@app.route('/login_account', methods=['POST'])
+def login_account():
+    return render_template('index.html')
 
 
 @app.route('/contact')
