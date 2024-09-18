@@ -7,59 +7,111 @@
 
 <div class="content">
     <!-- Form Section -->
-    <form method="POST">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="account">Account</label>
-                    <input type="text" class="form-control" id="account" name="account" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="gmail">Gmail</label>
-                    <input type="text" class="form-control" id="gmail" name="gmail" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control" id="password" name="password" required>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="followers">Followers</label>
-                    <input type="number" class="form-control" id="followers" name="followers" required>
-                </div>
-            </div>
+    <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <!-- First row of checkboxes -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Watch Video</label>
+                                        <input type="number" class="form-control" placeholder="Minutes">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Marketplace</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Like Post</label>
+                                        <input type="number" class="form-control" placeholder="Likes">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Newsfeed</label>
+                                        <input type="number" class="form-control" placeholder="Minutes">
+                                    </div>
+                                </div>
+                                <!-- Second row of checkboxes -->
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Mute</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Add Friends</label>
+                                        <input type="number" class="form-control" placeholder="Number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label><input type="checkbox"> Delay Post</label>
+                                        <input type="number" class="form-control" placeholder="Seconds">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-primary btn-block">START</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-danger btn-block">STOP</button>
+                                </div>
+                            </div>
 
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="created_date">Created Date</label>
-                    <input type="date" class="form-control" id="created_date" name="created_date" required>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="monetization">Monetization</label>
-                    <select class="form-control" id="monetization" name="monetization" required>
-                        <option value="Enable">Enable</option>
-                        <option value="Disabled">Disabled</option>
-                    </select>
+            <!-- Account Table -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Device Management</h3>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>IP Address</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Dynamic data rows go here -->
+                            <tr>
+                                <td>01</td>
+                                <td>Samsung S10</td>
+                                <td>192.168.1.3</td>
+                                <td><span class="bg-success">Live</span></td>
+                                <td>
+                                    <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
+                                </td> <!-- Add Action column -->
+                            </tr>
+                            <tr>
+                                <td>02</td>
+                                <td>Samsung S11</td>
+                                <td>192.168.1.2</td>
+                                <td><span class="bg-success">Live</span></td>
+                                <td>
+                                    <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
+                                </td> <!-- Add Action column -->
+                            </tr>
+                            <tr>
+                                <td>03</td>
+                                <td>Samsung S10+</td>
+                                <td>192.168.1.4</td>
+                                <td><span class="bg-success">Live</span></td>
+                                <td>
+                                    <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
+                                </td> <!-- Add Action column -->
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Save Account</button>
             </div>
         </div>
-    </form>
 
     <!-- Search Filter Section -->
     <div class="filter-section">

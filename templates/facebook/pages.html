@@ -7,75 +7,182 @@
 
 <div class="content">
     <!-- Form to Input New Account -->
-    <form method="POST" action="/add_account">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="account">Account</label>
-                    <input type="text" class="form-control" id="account" name="account" required>
+    <!--    <form method="POST" action="/add_account">-->
+    <!--        <div class="row">-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="account">Account</label>-->
+    <!--                    <input type="text" class="form-control" id="account" name="account" required>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="page_name">Page Name</label>-->
+    <!--                    <input type="text" class="form-control" id="page_name" name="page_name" required>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="followers">Followers/Friends</label>-->
+    <!--                    <input type="number" class="form-control" id="followers" name="followers" required>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="reached">Reached</label>-->
+    <!--                    <input type="number" class="form-control" id="reached" name="reached" required>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="url">Page Url</label>-->
+    <!--                    <input type="text" class="form-control" id="url" name="url" required>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="created_date">Created Date</label>-->
+    <!--                    <input type="date" class="form-control" id="created_date" name="created_date" required>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="monetization">Monetization</label>-->
+    <!--                    <select class="form-control" id="monetization" name="monetization" required>-->
+    <!--                        <option value="Enable">Enable</option>-->
+    <!--                        <option value="Restricted">Restricted</option>-->
+    <!--                        <option value="Flagged">Flagged</option>-->
+    <!--                        <option value="Disabled">Disabled</option>-->
+    <!--                    </select>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-3">-->
+    <!--                <div class="form-group">-->
+    <!--                    <label for="description">Description</label>-->
+    <!--                    <textarea class="form-control" id="description" name="description" rows="2"></textarea>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            <div class="col-md-12">-->
+    <!--                <button type="submit" class="btn btn-primary">Save Account</button>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </form>-->
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <!-- First row of checkboxes -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Watch Video</label>
+                                    <input class="form-control" placeholder="Minutes" type="number">
+                                </div>
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Marketplace</label>
+                                </div>
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Like Post</label>
+                                    <input class="form-control" placeholder="Likes" type="number">
+                                </div>
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Newsfeed</label>
+                                    <input class="form-control" placeholder="Minutes" type="number">
+                                </div>
+                            </div>
+                            <!-- Second row of checkboxes -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Mute</label>
+                                </div>
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Add Friends</label>
+                                    <input class="form-control" placeholder="Number" type="number">
+                                </div>
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Delay Post</label>
+                                    <input class="form-control" placeholder="Seconds" type="number">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="row">
+                            <!--                                <button type="button" class="btn btn-success">Start</button>-->
+                            <div class="col-md-3">
+                                <button class="btn btn-primary btn-block" type="button">START</button>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-danger btn-block" type="button">STOP</button>
+                            </div>
+                            <!--                                <button type="button" class="btn btn-danger">Stop</button>-->
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="page_name">Page Name</label>
-                    <input type="text" class="form-control" id="page_name" name="page_name" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="followers">Followers/Friends</label>
-                    <input type="number" class="form-control" id="followers" name="followers" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="reached">Reached</label>
-                    <input type="number" class="form-control" id="reached" name="reached" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="url">Page Url</label>
-                    <input type="text" class="form-control" id="url" name="url" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="created_date">Created Date</label>
-                    <input type="date" class="form-control" id="created_date" name="created_date" required>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="monetization">Monetization</label>
-                    <select class="form-control" id="monetization" name="monetization" required>
-                        <option value="Enable">Enable</option>
-                        <option value="Restricted">Restricted</option>
-                        <option value="Flagged">Flagged</option>
-                        <option value="Disabled">Disabled</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" id="description" name="description" rows="2"></textarea>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Save Account</button>
             </div>
         </div>
-    </form>
+        <!-- Account Table -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Device Management</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>IP Address</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Dynamic data rows go here -->
+                        <tr>
+                            <td>01</td>
+                            <td>LD01</td>
+                            <td>192.168.1.3</td>
+                            <td><span class="bg-success">Live</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
+                            </td> <!-- Add Action column -->
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>LD02</td>
+                            <td>192.168.1.2</td>
+                            <td><span class="bg-success">Live</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
+                            </td> <!-- Add Action column -->
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>LD03</td>
+                            <td>192.168.1.4</td>
+                            <td><span class="bg-success">Live</span></td>
+                            <td>
+                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
+                            </td> <!-- Add Action column -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Search Filter Section -->
     <div class="filter-section">
         <form id="filter-form" method="GET">
             <div class="row">
                 <!-- Combo box for filtering by category -->
-                <div class="col-md-4">
-                    <label for="category">Filter By:</label>
-                    <select id="category" name="category" class="form-control">
+                <div class="col-md-2">
+                    <label for="category">Search By:</label>
+                    <select class="form-control" id="category" name="category">
                         <option value="">All</option>
                         <option value="Category1">Page(Name or ID)</option>
                         <option value="Category2">Account</option>
@@ -84,24 +191,50 @@
                 </div>
 
                 <!-- Text box for searching -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="search">Search:</label>
-                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                    <input class="form-control" id="search" name="search" placeholder="Enter keyword..." type="text">
                 </div>
 
                 <!-- Submit Button for filtering -->
                 <div class="col-md-2">
                     <label>&nbsp;</label>
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    <button class="btn btn-primary btn-block" type="submit">Filter</button>
                 </div>
                 <!-- Submit Button for filtering -->
                 <div class="col-md-2">
                     <label>&nbsp;</label>
-                    <button type="button" class="btn btn-warning btn-block">Export File</button>
+                    <button class="btn btn-warning btn-block" id="importPageButton" type="button">Import Page</button>
                 </div>
             </div>
         </form>
     </div>
+
+
+    <!-- Import Page Modal -->
+<div class="modal fade" id="importPageModal" tabindex="-1" aria-labelledby="importPageModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="importPageModalLabel">Import URL Links</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="importPageForm">
+          <div class="mb-3">
+            <label for="pageUrls" class="form-label">Paste URL Links</label>
+            <textarea class="form-control" id="pageUrls" rows="5" placeholder="Enter one or more URLs separated by line breaks"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="importPagesButton">Import Pages</button>
+      </div>
+    </div>
+  </div>
+</div>
+
     <span></span>
 
 
@@ -126,7 +259,7 @@
         <tr>
             <td>{{ loop.index + (pagination.page - 1) * pagination.per_page }}</td>
             <td>{{ item.account }}</td>
-            <td>{{ item.page_name }}</td>
+            <td><a href="#">{{ item.page_name }}</a></td>
             <td>{{ format_number(item.followers) }}</td>
             <td>{{ format_number(item.reached) }}</td>
             <td>{{ item.page_url }}</td>
@@ -134,9 +267,10 @@
             <td>{{ item.monetization }}</td>
             <td>{{ item.description }}</td>
             <td>
-                <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-sm btn-primary">Edit</a>
-                <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}">Delete</a>
-                <a href="{{ url_for('view_item', id=item.id) }}" class="btn btn-sm btn-info">View</a>
+                <a class="btn btn-sm btn-primary" href="{{ url_for('edit_item', id=item.id) }}">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}"
+                   href="{{ url_for('delete_item', id=item.id) }}">Delete</a>
+                <a class="btn btn-sm btn-info" href="{{ url_for('view_item', id=item.id) }}">View</a>
             </td>
         </tr>
         {% else %}
@@ -206,5 +340,33 @@
             });
 
         });
-    </script>
+
+
+    document.getElementById('search').addEventListener('keyup', function() {
+    // Get the search input value
+    const searchValue = this.value.toLowerCase();
+
+    // Get all table rows
+    const rows = document.querySelectorAll('table tbody tr');
+
+    rows.forEach(row => {
+      // Get the Page Name column (assuming it's the third column, index 2)
+      const pageNameCell = row.cells[2];
+
+      if (pageNameCell) {
+        const pageName = pageNameCell.textContent.toLowerCase();
+
+        // Show row if the Page Name matches the search value, otherwise hide it
+        if (pageName.includes(searchValue)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      }
+    });
+  });
+
+
+
+</script>
 {% endblock %}
