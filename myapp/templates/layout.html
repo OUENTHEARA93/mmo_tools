@@ -155,16 +155,16 @@
             </div>
 
             <!-- SidebarSearch Form (optional) -->
-<!--            <div class="form-inline">-->
-<!--                <div class="input-group" data-widget="sidebar-search">-->
-<!--                    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">-->
-<!--                    <div class="input-group-append">-->
-<!--                        <button class="btn btn-sidebar">-->
-<!--                            <i class="fas fa-search fa-fw"></i>-->
-<!--                        </button>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--            <div class="form-inline">-->
+            <!--                <div class="input-group" data-widget="sidebar-search">-->
+            <!--                    <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">-->
+            <!--                    <div class="input-group-append">-->
+            <!--                        <button class="btn btn-sidebar">-->
+            <!--                            <i class="fas fa-search fa-fw"></i>-->
+            <!--                        </button>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
@@ -225,11 +225,47 @@
                     </li>
                     <li class="nav-header">META GROUPS</li>
                     <!-- Facebook Management -->
-                    <li class="nav-item">
-                        <a href="{{ url_for('facebook') }}" class="nav-link {% block active_facebook %}{% endblock %}">
+                    <li class="nav-item {% block menu_open_facebook %}{% endblock %}">
+                        <a href="#" class="nav-link">
                             <i class="nav-icon fab fa-facebook"></i>
-                            <p>Facebook Management</p>
+                            <p>
+                                Facebook
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ url_for('facebook_accounts') }}" class="nav-link {% block active_facebook_account %}{% endblock %}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Account</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url_for('facebook') }}" class="nav-link {% block active_facebook_page %}{% endblock %}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Page</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url_for('facebook_groups') }}" class="nav-link {% block active_facebook_group %}{% endblock %}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Group</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{url_for('facebook_monetize')}}" class="nav-link {% block active_facebook_monetize %}{% endblock %}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Monetization</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ url_for('facebook_earning') }}" class="nav-link {% block active_facebook_earning %}{% endblock %}">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Earning</p>
+                                </a>
+                            </li>
+
+                        </ul>
                     </li>
 
                     <!-- Instagram Management -->
@@ -288,6 +324,18 @@
 
     <!-- Content Wrapper -->
     <div class="content-wrapper">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category,message in messages%}
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{ message }}.
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
         {% block content %}
         <!-- Page content will go here -->
         {% endblock %}
@@ -295,7 +343,7 @@
 
     <!-- Footer -->
     <footer class="main-footer">
-<!--        <strong>CPU &copy; 10%<a href="#">RAM : 5%</a>.</strong>-->
+        <!--        <strong>CPU &copy; 10%<a href="#">RAM : 5%</a>.</strong>-->
         <strong>Total : 167290
             <a href="#" style="color: green;">Live : 167200</a> |
             <a href="#" style="color: red;">Die : 90</a> |

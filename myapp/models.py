@@ -32,13 +32,13 @@ class Account(db.Model):
     username = db.Column(db.String(100), nullable=False)  # Username or email
     password = db.Column(db.String(100), nullable=False)  # Password
     gender = db.Column(db.String(10), nullable=False)  # Gender
-    dob = db.Column(db.DateTime, nullable=False)  # Date of Birth
+    dob = db.Column(db.String(100), nullable=False)  # Date of Birth
     mail = db.Column(db.String(100), nullable=True)  # Email
     pass_mail = db.Column(db.String(100), nullable=True)  # Password email
     two_fa = db.Column(db.String(100), nullable=True)  # 2FA code
     access_token = db.Column(db.String(255), nullable=True)  # Store tokens for API access
     last_login = db.Column(db.DateTime, nullable=True)  # Last login timestamp
-    status = db.Column(db.String(50), default="active")  # Active, inactive, banned, etc.
+    status = db.Column(db.String(50), default="live")  # Active, inactive, banned, etc.
     device_id = db.Column(db.Integer, db.ForeignKey('device.id'))  # Associated device
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 

@@ -5,7 +5,7 @@ import yt_dlp
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from myapp import app, BASE_FOLDER_PATH
 from myapp import db
-from myapp.models import Account, Page
+from myapp.models import Account, Page, Group, Monetization, Earning
 from myapp.utils import get_files_and_folders, fetch_video_info
 
 
@@ -41,7 +41,7 @@ def facebook_register():
     return render_template("/facebook/register.html")
 
 
-@app.route('/facebook')
+@app.route('/facebook/page')
 @app.route('/facebook/page/<int:page>')
 def facebook(page=1):
     per_page = 10  # Number of items per page
@@ -64,23 +64,66 @@ def view_item(id):
     return render_template("/facebook/view_page.html", item=account)
 
 
-@app.route('/add_account2', methods=['POST'])
-def add_account():
-    account = request.form.get('account')
-    page_name = request.form.get('page_name')
-    followers = request.form.get('followers')
-    reached = request.form.get('reached')
-    page_url = request.form.get('page_url')
-    created_date = request.form.get('created_date')
-    monetization = request.form.get('monetization')
-    description = request.form.get('description')
+@app.route('/facebook/accounts/add', methods=['GET', 'POST'])
+def add_facebook_account():
+    return render_template('/facebook/add_accounts.html')
 
-    # new_account = FacebookAccount(account=account, page_name=page_name, followers=followers,
-    #                               reached=reached, page_url=page_url, created_date=created_date,
-    #                               monetization=monetization, description=description)
-    # db.session.add(new_account)
-    # db.session.commit()
-    return redirect(url_for('facebook'))
+
+@app.route('/facebook/accounts/bulk_add', methods=['GET', 'POST'])
+def bulk_add_facebook_account():
+    if request.method == 'POST':
+        data = request.form.get('bulk_data')  # Get bulk data from form
+        print(data)
+        if not data:
+            flash("No data provided", "error")
+            return redirect(url_for('bulk_add_facebook_account'))
+
+        # Split input into lines (each line is an account)
+        lines = data.strip().split('\n')
+
+        for line in lines:
+            try:
+                line = line.replace(' ', '|')
+
+                # Split by '|' and count fields
+                fields = line.split('|')
+
+                # Check if format is (uid|name|password|2fa)
+                if len(fields) == 4:
+                    uid, username, password, two_fa = fields
+                    # Assign default or empty values to the missing fields
+                    gender, dob, mail, pass_mail = None, None, None, None
+                elif len(fields) == 8:
+                    # Full format: (uid|name|password|2fa|gender|dob|mail|pass_mail)
+                    uid, username, password, two_fa, gender, dob, mail, pass_mail = fields
+                else:
+                    flash(f"Invalid format for line: {line}", "error")
+                    continue
+
+                # Create Account object
+                account = Account(
+                    uid=uid,
+                    username=username,
+                    password=password,
+                    gender=gender,
+                    dob=dob,
+                    mail=mail,
+                    pass_mail=pass_mail,
+                    two_fa=two_fa
+
+                )
+
+                # Add to the session
+                db.session.add(account)
+
+            except Exception as e:
+                flash(f"Error processing line: {line}. Error: {str(e)}", "error")
+                continue
+
+        # Commit all the changes
+        db.session.commit()
+        flash("Accounts added successfully", category="success")
+    return render_template('/facebook/add_bulk_accounts.html')
 
 
 @app.route("/facebook/addpage")
@@ -98,7 +141,7 @@ def load_create_page(page=1):
     return render_template('/facebook/add_pages.html')  # , items=pagination.items, pagination=pagination)
 
 
-@app.route('/add_account', methods=['POST'])
+@app.route('/facebook/add/page', methods=['POST'])
 def add_page():
     account = request.form.get('account')
     page_name = request.form.get('page_name')
@@ -236,6 +279,7 @@ def editor(page=1):
 
 
 @app.route('/facebook/accounts')
+@app.route('/facebook/accounts/<int:page>')
 def facebook_accounts(page=1):
     per_page = 10  # Number of items per page
     pagination = Account.query.order_by(Account.id.desc()).paginate(page=page, per_page=per_page,
@@ -250,7 +294,49 @@ def facebook_accounts(page=1):
     # return render_template('/facebook/accounts.html')
 
 
-@app.route('/facebook/post-reels')
+@app.route('/facebook/groups')
+def facebook_groups(page=1):
+    per_page = 10  # Number of items per page
+    pagination = Group.query.order_by(Group.id.desc()).paginate(page=page, per_page=per_page,
+                                                                error_out=False)
+    # for item in pagination.items:
+    #     print(item)
+    #
+    # if page > pagination.pages or page < 1:
+    #     flash('Invalid page number', 'error')
+    #     return redirect(url_for('facebook'))
+    return render_template('/facebook/groups.html')  # , items=pagination.items, pagination=pagination)
+
+
+@app.route('/facebook/monetize')
+def facebook_monetize(page=1):
+    # per_page = 10  # Number of items per page
+    # pagination = Monetization.query.order_by(Monetization.id.desc()).paginate(page=page, per_page=per_page,
+    #                                                                           error_out=False)
+    # for item in pagination.items:
+    #     print(item)
+    #
+    # if page > pagination.pages or page < 1:
+    #     flash('Invalid page number', 'error')
+    #     return redirect(url_for('facebook'))
+    return render_template('/facebook/monetization.html')  # , items=pagination.items, pagination=pagination)
+
+
+@app.route('/facebook/earning')
+def facebook_earning(page=1):
+    per_page = 10  # Number of items per page
+    pagination = Earning.query.order_by(Earning.id.desc()).paginate(page=page, per_page=per_page,
+                                                                    error_out=False)
+    # for item in pagination.items:
+    #     print(item)
+    #
+    # if page > pagination.pages or page < 1:
+    #     flash('Invalid page number', 'error')
+    #     return redirect(url_for('facebook'))
+    return render_template('/facebook/earning.html')  # , items=pagination.items, pagination=pagination)
+
+
+@app.route('/facebook/post')
 def facebook_reels():
     return render_template('/facebook/post.html')
 

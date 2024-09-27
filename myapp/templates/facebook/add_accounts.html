@@ -1,0 +1,99 @@
+{% extends 'layout.html' %}
+{% block menu_open_facebook %} menu-open {% endblock %}
+{% block content %}
+<div class="content-header">
+  <h1>Add Account</h1>
+</div>
+
+<div class="content">
+
+  <!--    ****** FORM DIALOG IMPORT PAGE ***** -->
+  <div class="row" id="formImportPage">
+
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <form method="POST" action="/add_account">
+            <div class="row">
+              <!-- First row of checkboxes -->
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>UID</label>
+                  <input class="form-control" placeholder="Account" id="account" name="account" type="text" required>
+                </div>
+                <div class="form-group">
+                  <label>Account Name</label>
+                  <input type="text" class="form-control" id="page_name" name="page_name" required>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="text" class="form-control" id="followers" name="followers" required>
+                </div>
+                <div class="form-group">
+                  <label>DOB </label>
+                  <input type="date" class="form-control" id="dob" name="dob">
+                </div>
+                <div class="form-group">
+                  <label>2FA </label>
+                  <input type="text" class="form-control" id="url" name="url">
+                </div>
+
+
+              </div>
+              <!-- Second row of checkboxes -->
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Mail </label>
+                  <input type="text" class="form-control" id="mail" name="mail">
+                </div>
+                <div class="form-group">
+                  <label>Pass Mail </label>
+                  <input type="text" class="form-control" id="passmail" name="passmail">
+                </div>
+                <div class="form-group">
+                  <label>Access Token</label>
+                  <input input type="text" class="form-control" id="reached" name="reached"/>
+                </div>
+                <div class="form-group">
+                  <label>Status</label>
+                  <input type="date" class="form-control" id="created_date" name="created_date" required>
+                </div>
+                <div class="form-group">
+                  <label>Device ID</label>
+                  <input input type="text" class="form-control" id="device" name="device"/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+<!--                    <textarea class="form-control" id="description" name="description" rows="2"></textarea>-->
+                    <input type="text" class="form-control" id="description" name="description" required>
+                </div>
+              </div>
+            </div>
+            <!-- Buttons -->
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-block" type="submit">Add New</button>
+                </div>
+              <div class="col-md-2">
+                    <button class="btn btn-danger btn-block" type="button" id="noImportPageBtn">Cancel</button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+{% endblock %}
+{% block scripts %}
+
+<script>
+
+
+
+</script>
+{% endblock %}
