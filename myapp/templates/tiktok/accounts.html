@@ -1,8 +1,10 @@
 {% extends 'layout.html' %}
-
+{% block active_tiktok %}
+    active
+{% endblock %}
 {% block content %}
 <div class="content-header">
-    <h1>DEVICE MANAGEMENT</h1>
+    <h1>TIKTOK EARNING</h1>
 </div>
 
 <div class="content">
@@ -16,35 +18,35 @@
                             <!-- First row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Create New</label>
+                                    <label><input type="checkbox"> Watch Video</label>
                                     <input type="number" class="form-control" placeholder="Minutes">
                                 </div>
                                 <!--                                    <div class="form-group">-->
                                 <!--                                        <label><input type="checkbox"> Marketplace</label>-->
                                 <!--                                    </div>-->
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Random Device</label>
-                                    <input type="number" class="form-control" placeholder="Samsung">
+                                    <label><input type="checkbox"> Like Post</label>
+                                    <input type="number" class="form-control" placeholder="Likes">
                                 </div>
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Install apk</label>
-                                    <input type="number" class="form-control" placeholder="enter apk path location">
+                                    <label><input type="checkbox"> Scroll</label>
+                                    <input type="number" class="form-control" placeholder="Minutes">
                                 </div>
                             </div>
                             <!-- Second row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Block Location</label>
+                                    <label><input type="checkbox"> Mute</label>
                                     <input type="number" class="form-control" placeholder="Minutes">
                                 </div>
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Clone</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Number">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Delay Post</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Seconds">-->
-<!--                                </div>-->
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Follower Friends</label>
+                                    <input type="number" class="form-control" placeholder="Number">
+                                </div>
+                                <div class="form-group">
+                                    <label><input type="checkbox"> Delay Post</label>
+                                    <input type="number" class="form-control" placeholder="Seconds">
+                                </div>
                             </div>
                         </div>
                         <!-- Buttons -->
@@ -236,6 +238,7 @@
                 <a class="btn btn-sm btn-info" href="/view/1">View</a>
             </td>
         </tr>
+
         <tr>
             <td>2</td>
             <td>Baby Clips</td>
@@ -300,7 +303,86 @@
                 <a class="btn btn-sm btn-info" href="/view/1">View</a>
             </td>
         </tr>
-
+        <tr>
+            <td>6</td>
+            <td>Panther</td>
+            <td>Facebook - Bonus</td>
+            <td>83.1M</td>
+            <td><b>$4.3K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Family Alita</td>
+            <td>Facebook - Bonus</td>
+            <td>66.1M</td>
+            <td><b>$4.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Clip Earn</td>
+            <td>Facebook - Bonus</td>
+            <td>66.1M</td>
+            <td><b>$5.3K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Melton Cleta</td>
+            <td>Facebook - Bonus</td>
+            <td>46.1M</td>
+            <td><b>$3.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>Blick Kearney</td>
+            <td>Facebook - Bonus</td>
+            <td>78.1M</td>
+            <td><b>$3.2K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
         </tbody>
     </table>
     <nav aria-label="Page navigation">

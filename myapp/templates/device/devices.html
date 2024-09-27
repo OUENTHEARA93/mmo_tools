@@ -1,8 +1,11 @@
 {% extends 'layout.html' %}
+{% block active_device %}
+    active
+{% endblock %}
 
 {% block content %}
 <div class="content-header">
-    <h1>TELEGRAM MANAGEMENT</h1>
+    <h1>DEVICE MANAGEMENT</h1>
 </div>
 
 <div class="content">
@@ -16,35 +19,35 @@
                             <!-- First row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Scrape Member</label>
-                                    <textarea rows="3" class="form-control" placeholder="links(group or channel)"></textarea>
+                                    <label><input type="checkbox"> Create New</label>
+                                    <input type="number" class="form-control" placeholder="Minutes">
                                 </div>
                                 <!--                                    <div class="form-group">-->
                                 <!--                                        <label><input type="checkbox"> Marketplace</label>-->
                                 <!--                                    </div>-->
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Like Post</label>
-                                    <input type="number" class="form-control" placeholder="Likes">
+                                    <label><input type="checkbox"> Random Device</label>
+                                    <input type="number" class="form-control" placeholder="Samsung">
                                 </div>
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Scroll</label>
-                                    <input type="number" class="form-control" placeholder="Minutes">
+                                    <label><input type="checkbox"> Install apk</label>
+                                    <input type="number" class="form-control" placeholder="enter apk path location">
                                 </div>
                             </div>
                             <!-- Second row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Mute</label>
+                                    <label><input type="checkbox"> Block Location</label>
                                     <input type="number" class="form-control" placeholder="Minutes">
                                 </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Follower Friends</label>
-                                    <input type="number" class="form-control" placeholder="Number">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Delay Post</label>
-                                    <input type="number" class="form-control" placeholder="Seconds">
-                                </div>
+<!--                                <div class="form-group">-->
+<!--                                    <label><input type="checkbox"> Clone</label>-->
+<!--                                    <input type="number" class="form-control" placeholder="Number">-->
+<!--                                </div>-->
+<!--                                <div class="form-group">-->
+<!--                                    <label><input type="checkbox"> Delay Post</label>-->
+<!--                                    <input type="number" class="form-control" placeholder="Seconds">-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <!-- Buttons -->
@@ -116,15 +119,15 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Account Management</h3>
+                    <h3 class="card-title">Device Management</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Account</th>
-                            <th>Contact</th>
+                            <th>Name</th>
+                            <th>IP Address</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -179,7 +182,7 @@
         <form id="filter-form" method="GET">
             <div class="row">
                 <!-- Combo box for filtering by category -->
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label for="category">Filter By:</label>
                     <select id="category" name="category" class="form-control">
                         <option value="">All</option>
@@ -188,7 +191,7 @@
                 </div>
 
                 <!-- Text box for searching -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="search">Search:</label>
                     <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
                 </div>
@@ -202,30 +205,152 @@
         </form>
     </div>
 
-
     <!-- Table Section -->
     <table class="table table-bordered mt-4">
         <thead>
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Gmail</th>
-            <th>Password</th>
-            <th>Subscribers</th>
-            <th>Created Date</th>
+            <th>Category</th>
+            <th>Traffic</th>
+            <th>Earning</th>
+            <th>Website</th>
+            <th>Last Check</th>
             <th>Monetization</th>
             <th>Description</th>
+            <th>Action</th> <!-- Add Action column -->
         </tr>
         </thead>
         <tbody>
-        {% for account in accounts %}
-        <tr>
 
+        <tr>
+            <td>1</td>
+            <td>Clips</td>
+            <td>Facebook - Bonus</td>
+            <td>1.1M</td>
+            <td><b>$2.3K</b></td>
+            <td>cartoonfun.site</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
         </tr>
-        {% endfor %}
+        <tr>
+            <td>2</td>
+            <td>Baby Clips</td>
+            <td>Facebook - Bonus</td>
+            <td>1.1M</td>
+            <td><b>$2.3K</b></td>
+            <td>babynews26.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Evelyn Harrell</td>
+            <td>Facebook - Bonus</td>
+            <td>16.1M</td>
+            <td><b>$1.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Neymar</td>
+            <td>Facebook - Bonus</td>
+            <td>88.1M</td>
+            <td><b>$6.3K</b></td>
+            <td>kupdatenews24.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Media Idol</td>
+            <td>Facebook - Bonus</td>
+            <td>3.1M</td>
+            <td><b>$1.3K</b></td>
+            <td>animallove152.com</td>
+            <td>2024-09-15</td>
+            <td>Enable</td>
+            <td>Invited Bonus - Restricted Payout</td>
+            <td>
+                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
+                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
+                <a class="btn btn-sm btn-info" href="/view/1">View</a>
+            </td>
+        </tr>
+
         </tbody>
     </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
 
+
+            <li class="page-item active">
+                <a class="page-link" href="/facebook/page/1">1</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/2">2</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/3">3</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/4">4</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/5">5</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/10">10</a>
+            </li>
+
+
+            <li class="page-item ">
+                <a class="page-link" href="/facebook/page/11">11</a>
+            </li>
+
+
+            <li class="page-item">
+                <a class="page-link" href="/facebook/page/2">Next</a>
+            </li>
+
+        </ul>
+    </nav>
     <!-- System Performance Section -->
     <!--    <div class="mt-4">-->
     <!--        <label>CPU Performance:</label><br>-->
