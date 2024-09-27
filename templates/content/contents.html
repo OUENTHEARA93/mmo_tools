@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="videoLinks">Video Links:</label>
-                    <textarea class="form-control" id="videoLinks" name="videoLinks" rows="4"></textarea>
+                    <textarea class="form-control" id="videoLinks" name="videoLinks" rows="5"></textarea>
                 </div>
             </div>
             <div class="col-md-2">
@@ -44,7 +44,8 @@
             </div>
 
             <div class="col-md-12">
-                <button type="submit" class="btn btn-primary">Download</button>
+<!--                <button type="submit" class="btn btn-primary">Download</button>-->
+                <button type="submit" id="downloadBtn" class="btn btn-primary">Download</button>
             </div>
         </div>
     </form>
@@ -79,32 +80,32 @@
 
 
     <!-- Table Section -->
-    <table class="table table-bordered mt-4">
+    <table id="videoTable" class="table table-bordered mt-4">
         <thead>
         <tr>
             <th>No</th>
             <th>Folder Name</th>
             <th>Path</th>
-            <th>Status</th>
             <th>Size</th>
             <th>Videos</th>
-            <th>Photos</th>
+            <th>Views</th>
+            <th>Status</th>
             <th>Description</th>
         </tr>
         </thead>
         <tbody>
-        {% for file in files %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ file.name }}</td>
-            <td>{{ file.path }}</td>
-            <td>{{ file.status }}</td>
-            <td>{{ file.size }} KB</td>
-            <td>{{ file.videos }}</td>
-            <td>{{ file.photos }}</td>
-            <td>{{ file.description }}</td>
-        </tr>
-        {% endfor %}
+<!--        {% for file in files %}-->
+<!--        <tr>-->
+<!--            <td>{{ loop.index }}</td>-->
+<!--            <td>{{ file.name }}</td>-->
+<!--            <td>{{ file.path }}</td>-->
+<!--            <td>{{ file.status }}</td>-->
+<!--            <td>{{ file.size }} KB</td>-->
+<!--            <td>{{ file.videos }}</td>-->
+<!--            <td>{{ file.photos }}</td>-->
+<!--            <td>{{ file.description }}</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
         </tbody>
     </table>
 
@@ -113,22 +114,122 @@
 {% block scripts %}
 
 <script>
-document.getElementById('download-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
-        fetch('/download', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            // Handle response and update table or show success message
-        })
-        .catch(error => {
+
+$('#download-form').on('submit', function(e) {
+    e.preventDefault();  // Prevent normal form submission
+    var downloadBtn = $('#downloadBtn')
+    downloadBtn.prop('disabled', true).text('Downloading...');
+    const videoLinks = $('textarea[name="videoLinks"]').val().split('\n');  // Get video URLs
+    var formData = new FormData(this);
+
+    $.ajax({
+        url: '/scrape_videos',  // Endpoint for scraping video details
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ video_links: videoLinks }),  // Send video links to backend
+        success: function(data) {
+            downloadData(formData,data)
+            downloadBtn.prop('disabled', false).text('Download');
+        },
+        error: function(error) {
             console.error('Error:', error);
-        });
+        }
     });
+});
+
+// Function to update table with scraped data
+function updateTable(videoData) {
+    const tableBody = $('#videoTable tbody');  // Get the table body
+    const videoLinks = $('#videoLinks');
+    tableBody.empty();  // Clear existing rows
+    videoLinks.empty();
+    videoData.forEach((video, index) => {
+        const row = `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${video.title}</td>
+                <td>${video.path}</td>
+                <td>${(video.size / 1024 / 1024).toFixed(2)} MB</td>
+                <td>${video.duration} minutes</td>
+                <td>${video.views} views</td>  <!-- Placeholder -->
+                <td>Completed</td>  <!-- Example status -->
+                <td></td>
+<!--                <td>${video.description}</td>-->
+            </tr>
+        `;
+        tableBody.append(row);  // Append row to table
+    });
+
+}
+
+function downloadData(formData,data1){
+    $.ajax({
+            url: '/download',  // The URL for the download endpoint
+            type: 'POST',
+            data: formData,
+            processData: false,  // Prevent jQuery from processing the data
+            contentType: false,  // Prevent jQuery from setting content-type
+            success: function(data) {
+                // On success, display success alert or update table
+                alert(data)
+                updateTable(data1);  // Call function to update table with scraped data
+<!--                if (data.success) {-->
+<!--                    alert('Download completed successfully!');-->
+
+<!--                } else {-->
+<!--                    alert('Download failed! Please try again.');-->
+<!--                }-->
+            },
+            error: function(xhr, status, error) {
+                // Handle error case
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            },
+            complete: function() {
+                // Re-enable the button and change text back to "Download"
+                downloadBtn.prop('disabled', false).text('Download');
+            }
+        });
+}
+
+
+
+<!--$('#download-form').on('submit', function(e) {-->
+<!--    e.preventDefault();  // Prevent the form from submitting normally-->
+
+<!--    var downloadBtn = $('#downloadBtn');-->
+<!--    var formData = new FormData(this);  // Create FormData object-->
+
+<!--    // Disable button and change text to "Downloading..."-->
+<!--    downloadBtn.prop('disabled', true).text('Downloading...');-->
+
+<!--    $.ajax({-->
+<!--        url: '/download',  // The URL for the download endpoint-->
+<!--        type: 'POST',-->
+<!--        data: formData,-->
+<!--        processData: false,  // Prevent jQuery from processing the data-->
+<!--        contentType: false,  // Prevent jQuery from setting content-type-->
+<!--        success: function(data) {-->
+<!--            // On success, display success alert or update table-->
+<!--            if (data.success) {-->
+<!--                alert('Download completed successfully!');-->
+<!--            } else {-->
+<!--                alert('Download failed! Please try again.');-->
+<!--            }-->
+<!--        },-->
+<!--        error: function(xhr, status, error) {-->
+<!--            // Handle error case-->
+<!--            console.error('Error:', error);-->
+<!--            alert('An error occurred. Please try again.');-->
+<!--        },-->
+<!--        complete: function() {-->
+<!--            // Re-enable the button and change text back to "Download"-->
+<!--            downloadBtn.prop('disabled', false).text('Download');-->
+<!--        }-->
+<!--    });-->
+<!--});-->
+
+
 
 </script>
 {% endblock %}

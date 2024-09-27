@@ -88,7 +88,7 @@ def view_item(id):
     return render_template("/facebook/view_page.html", item=account)
 
 
-@app.route('/add_account', methods=['POST'])
+@app.route('/add_account2', methods=['POST'])
 def add_account():
     account = request.form.get('account')
     page_name = request.form.get('page_name')
@@ -105,6 +105,40 @@ def add_account():
     db.session.add(new_account)
     db.session.commit()
     return redirect(url_for('facebook'))
+
+
+@app.route("/facebook/addpage")
+# @app.route('/facebook')
+@app.route('/facebook/addpage/page/<int:page>')
+def load_create_page(page=1):
+    per_page = 10  # Number of items per page
+    pagination = FacebookAccount.query.order_by(FacebookAccount.followers.desc()).paginate(page=page, per_page=per_page,
+                                                                                           error_out=False)
+
+    if page > pagination.pages or page < 1:
+        flash('Invalid page number', 'error')
+        return redirect(url_for('facebook'))
+
+    return render_template('/facebook/add_pages.html', items=pagination.items, pagination=pagination)
+
+
+@app.route('/add_account', methods=['POST'])
+def add_page():
+    account = request.form.get('account')
+    page_name = request.form.get('page_name')
+    followers = request.form.get('followers')
+    reached = request.form.get('reached')
+    page_url = request.form.get('page_url')
+    created_date = request.form.get('created_date')
+    monetization = request.form.get('monetization')
+    description = request.form.get('description')
+
+    new_account = FacebookAccount(account=account, page_name=page_name, followers=followers,
+                                  reached=reached, page_url=page_url, created_date=created_date,
+                                  monetization=monetization, description=description)
+    db.session.add(new_account)
+    db.session.commit()
+    return redirect(url_for('load_create_page'))
 
 
 # Edit Item
@@ -129,13 +163,13 @@ def edit_item(id):
 
 
 # Delete Item
-@app.route("/delete/<int:id>", methods=["POST"])
+@app.route("/facebook/addpage/delete/<int:id>", methods=["POST"])
 def delete_item(id):
     item = FacebookAccount.query.get_or_404(id)
     db.session.delete(item)
     db.session.commit()
     flash("Item deleted successfully!", "success")
-    return redirect(url_for('facebook'))
+    return redirect(url_for('load_create_page'))
 
 
 # Route for Adding New Account
@@ -168,20 +202,64 @@ def youtube(page=1):
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
+def format_views(count):
+    if count < 1000:
+        return str(count)
+    elif count < 1000000:
+        return f"{count // 1000}K"
+    else:
+        return f"{count // 1000000}M"
+
+
+def fetch_video_info(url):
+    ydl_opts = {
+        'quiet': True,
+        'skip_download': True,  # We're only getting the info, not downloading the video
+        'force_generic_extractor': False
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        try:
+            info = ydl.extract_info(url, download=False)
+
+            duration_minutes = round(info.get('duration', 0) / 60, 2)
+            views = info.get('view_count', 0) if info.get('view_count') is not None else 0
+            formatted_views = format_views(views)
+            return {
+                'title': info.get('title', ''),
+                'description': info.get('description', ''),
+                'duration': duration_minutes,  # info.get('duration', 0),
+                'views': f"{formatted_views}",
+                'size': info.get('filesize', 0),
+                'path': '/path/to/video'  # You can customize the path
+            }
+        except yt_dlp.utils.DownloadError as e:
+            print(f"Skipping video {url} due to error: {e}")
+
+
+
+
+@app.route('/scrape_videos', methods=['POST'])
+def scrape_videos():
+    video_links = request.json.get('video_links')
+    video_data = []
+
+    for link in video_links:
+        video_info = fetch_video_info(link)
+        video_data.append(video_info)
+
+    return jsonify(video_data)
+
+
 @app.route('/content')
 @app.route('/content/page/<int:page>')
 def content(page=1):
     files = get_files_and_folders(BASE_FOLDER_PATH)
-    # files.pop(0)
-    # per_page = 10  # Number of items per page
-    # pagination = None
-    # pages = 0
-    # if page > pagination.pages or page < 1:
-    #     flash('Invalid page number', 'error')
-    #     return redirect(url_for('content'))
-
     return render_template('/content/contents.html', files=files)
 
+@app.route('/content/edit/1')
+def edit_content(page=1):
+    # files = get_files_and_folders(BASE_FOLDER_PATH)
+    return render_template('/content/edit_content.html')
 
 @app.route('/filter', methods=['POST'])
 def filter_files():
@@ -240,7 +318,10 @@ def download():
     }
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(video_links)
+        try:
+            ydl.download(video_links)
+        except yt_dlp.utils.DownloadError as e:
+            print(f"Skipping video {video_links} due to error: {e}")
 
     return jsonify({'message': 'Download started, check server for output'})
 
@@ -250,9 +331,19 @@ def editor(page=1):
     return render_template('/content/editor.html')
 
 
+@app.route('/facebook/accounts')
+def facebook_accounts():
+    return render_template('/facebook/accounts.html')
+
+
 @app.route('/facebook/post-reels')
-def post_reels(page=1):
+def facebook_reels():
     return render_template('/facebook/post_reels.html')
+
+
+@app.route('/telegram/channel')
+def telegram_channels():
+    return render_template('/telegram/channels.html')
 
 
 @app.route('/contact')

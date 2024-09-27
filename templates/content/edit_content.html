@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="content-header">
-    <h1>WEBSITE EARNING</h1>
+    <h1>EDIT VIDEO</h1>
 </div>
 
 <div class="content">
@@ -16,33 +16,33 @@
                             <!-- First row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Scrape Website</label>
-                                    <input type="text" class="form-control" placeholder="www.xxxx.com">
+                                    <label><input type="checkbox"> Split Video</label>
+                                    <input type="number" class="form-control" placeholder="enter number" value="5">
                                 </div>
                                 <!--                                    <div class="form-group">-->
                                 <!--                                        <label><input type="checkbox"> Marketplace</label>-->
                                 <!--                                    </div>-->
                                 <div class="form-group">
-                                    <label>Category</label>
-                                    <input type="text" class="form-control" placeholder="/baby">
+                                    <label><input type="checkbox"> Adjust Color</label>
+                                    <input type="text" class="form-control" placeholder="enter number" value="#F92022">
                                 </div>
                                 <div class="form-group">
-                                    <label>Posts</label>
-                                    <input type="number" class="form-control" placeholder="0">
+                                    <label><input type="checkbox"> Adjust Speed</label>
+                                    <input type="number" class="form-control" placeholder="enter number" value="1.2">
                                 </div>
                             </div>
                             <!-- Second row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Except</label>
-                                    <input type="text" class="form-control" placeholder="a, img">
+                                    <label><input type="checkbox"> Adjust Logo</label>
+                                    <input type="text" class="form-control" placeholder="enter logo path">
                                 </div>
                                 <div class="form-group">
-                                    <label><input type="checkbox"> User agent</label>
-                                    <input type="text" class="form-control" placeholder="....">
+                                    <label><input type="checkbox"> Flip Video</label>
+                                    <input type="text" class="form-control" placeholder="enter logo path">
                                 </div>
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Delay Scrape</label>
+                                    <label><input type="checkbox"> Merge Video</label>
                                     <input type="number" class="form-control" placeholder="Seconds">
                                 </div>
                             </div>
@@ -68,91 +68,64 @@
                             <!-- First row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Post Website</label>
-                                    <textarea rows="4" class="form-control" placeholder="www.xxxx.com"></textarea>
+                                    <label><input type="checkbox"> Add Frame</label>
+                                    <select class="form-control">
+                                        <option>Acne</option>
+                                        <option>MC Speak</option>
+                                    </select>
                                 </div>
-                                <!--                                    <div class="form-group">-->
-                                <!--                                        <label><input type="checkbox"> Marketplace</label>-->
-                                <!--                                    </div>-->
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Post</label>
-                                    <input type="number" class="form-control" placeholder="0">
+                                    <label><input type="checkbox"> Add Text to Video</label>
+                                    <input type="text" class="form-control" placeholder="Sample">
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label><input checked="" type="checkbox"> Remove Copyright</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label><input checked="" type="checkbox"> Rename File</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label><input checked="" type="checkbox"> Create new folder</label>
+                                    </div>
+<!--                                    <div class="col-md-6">-->
+<!--                                        <label><input checked="" type="checkbox"> Check Page</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6">-->
+<!--                                        <label><input type="checkbox"> Enable 2FA</label>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                             <!-- Second row of checkboxes -->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Delay Post</label>
-                                    <input type="number" class="form-control" placeholder="0">
+                                    <label><input type="checkbox"> Translate to language</label>
+                                    <select class="form-control">
+                                        <option>Khmer</option>
+                                        <option>English</option>
+                                        <option>Chinese</option>
+                                        <option>Hindi</option>
+                                        <option>Korea</option>
+                                    </select>
                                 </div>
+
                                 <div class="form-group">
-                                    <label><input type="checkbox"> Follower Friends</label>
-                                    <input type="number" class="form-control" placeholder="Number">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Delay Post</label>
-                                    <input type="number" class="form-control" placeholder="Seconds">
+                                    <label>Select Category</label>
+                                    <select class="form-control">
+                                        <option>In-Stream</option>
+                                        <option>Ads On Reels</option>
+                                        <option>Performance Bonus</option>
+                                        <option>Creator Studio</option>
+                                        <option>TikTok</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <!-- Buttons -->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-md-3">-->
-                        <!--                                <button type="button" class="btn btn-primary btn-block">POST</button>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-md-3">-->
-                        <!--                                <button type="button" class="btn btn-danger btn-block">STOP</button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
                     </form>
                 </div>
             </div>
         </div>
-        <!-- Account Table -->
-<!--        <div class="col-md-4">-->
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-<!--                    <form>-->
-<!--                        <div class="row">-->
-<!--                            &lt;!&ndash; First row of checkboxes &ndash;&gt;-->
-<!--                            <div class="col-sm-6">-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Watch Video</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Minutes">-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <label><input type="checkbox"> Marketplace</label>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Like Post</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Likes">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Scroll</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Minutes">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Second row of checkboxes &ndash;&gt;-->
-<!--                            <div class="col-sm-6">-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Mute</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Minutes">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Follower Friends</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Number">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Delay Post</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Seconds">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
 
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
     <div class="card">
         <div class="card-body">
@@ -200,9 +173,11 @@
     <table class="table table-bordered mt-4">
         <thead>
         <tr>
+            <th><input checked="" type="checkbox"></th>
             <th>No</th>
-            <th>Website</th>
-            <th>Post</th>
+            <th>Folder</th>
+            <th>Videos</th>
+            <th>Category</th>
             <th>Created Date</th>
             <th>Status</th>
             <th>Description</th>
@@ -211,87 +186,48 @@
         </thead>
         <tbody>
         <tr>
+            <td><input checked="" type="checkbox"></td>
             <td>01</td>
-            <td>www.newslatebaby.com</td>
+            <td>BabyGo</td>
+            <td>Ads On Reels</td>
             <td>10</td>
             <td>18-09-2024</td>
-            <td>Posted</td>
+            <td>Edited</td>
             <td>Upload articles to website ready.</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
+                <a class="btn btn-sm btn-primary" href="#">Find Finder</a>
                 <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
+                   href="#">Re-Edit</a>
             </td>
         </tr>
         <tr>
-            <td>02</td>
-            <td>www.newslatebaby.com</td>
+            <td><input checked="" type="checkbox"></td>
+            <td>01</td>
+            <td>BabyGo</td>
+            <td>Ads On Reels</td>
             <td>10</td>
             <td>18-09-2024</td>
-            <td>Posted</td>
+            <td>Edited</td>
             <td>Upload articles to website ready.</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
+                <a class="btn btn-sm btn-primary" href="#">Find Finder</a>
                 <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
+                   href="#">Re-Edit</a>
             </td>
         </tr>
         <tr>
-            <td>02</td>
-            <td>www.newslatebaby.com</td>
+            <td><input checked="" type="checkbox"></td>
+            <td>01</td>
+            <td>BabyGo</td>
+            <td>Ads On Reels</td>
             <td>10</td>
             <td>18-09-2024</td>
-            <td>Posted</td>
+            <td>Edited</td>
             <td>Upload articles to website ready.</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
+                <a class="btn btn-sm btn-primary" href="#">Find Finder</a>
                 <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>03</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>04</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>05</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
+                   href="#">Re-Edit</a>
             </td>
         </tr>
         <!--        {% for item in items %}-->
