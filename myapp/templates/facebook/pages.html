@@ -174,7 +174,7 @@
         <tr>
 <!--            <td>{{ loop.index + (pagination.page - 1) * pagination.per_page }}</td>-->
             <td>{{ '%03d' % loop.index}}</td>
-            <td>{{ item.account_id }}</td>
+            <td>{{ item.account.username }}</td>
             <td><a href="#">{{ item.name }}</a></td>
             <td>{{ format_number(item.followers_count) }}</td>
             <td>{{ format_number(item.reached) }}</td>
@@ -196,6 +196,34 @@
         {% endfor %}
         </tbody>
     </table>
+        <!-- Pagination Controls -->
+    {% if pagination.pages > 1 %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {% if pagination.has_prev %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('facebook_page', page=pagination.prev_num) }}">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for page_num in pagination.iter_pages() %}
+            {% if page_num %}
+            <li class="page-item {{ 'active' if page_num == pagination.page else '' }}">
+                <a class="page-link" href="{{ url_for('facebook_page', page=page_num) }}">{{ page_num }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('facebook_page', page=pagination.next_num) }}">Next</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+
     </div>
 
 </div>

@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% block active_security %}
+active
+{% endblock %}
+
+{% block content %}
+<div class="content-header">
+  <h1>2FA Authenticator</h1>
+</div>
+
+<div class="content">
+
+  <!--    ****** FORM DIALOG IMPORT PAGE ***** -->
+  <div class="row" id="formImportPage">
+
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form id="2fa-form">
+            <div class="row">
+              <!-- First row of checkboxes -->
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Paste</label>
+                  <textarea class="form-control" placeholder="paste 2fa key.." id="fa_key" name="fa_key" rows="3" required></textarea>
+                </div>
+
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>Code</label>
+                  <textarea class="form-control" placeholder="result 2fa code.." id="user_code" name="user_code" rows="3"></textarea>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- Buttons -->
+            <div class="row">
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-block" type="button" onclick="getCode()">GET CODE</button>
+                </div>
+              <div class="col-md-2">
+                    <button class="btn btn-danger btn-block" type="button" id="noImportPageBtn">Cancel</button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+{% endblock %}
+{% block scripts %}
+
+<script>
+function getCode() {
+        // Get the 2FA key value from the input field
+        const faKey = document.getElementById("fa_key").value;
+        if (!faKey) {
+            alert("Please enter a 2FA key.");
+            return;
+        }
+
+        // Send the 2FA key to the server using fetch API
+        fetch('/security/generate_code', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ fa_key: faKey })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert("Error: " + data.error);
+            } else {
+                // Set the generated code in the textarea
+                document.getElementById("user_code").value = data.code;
+            }
+        })
+        .catch(error => {
+            console.error("Error generating code:", error);
+            alert("Failed to generate code. Please try again.");
+        });
+    }
+
+
+</script>
+{% endblock %}

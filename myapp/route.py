@@ -1,6 +1,7 @@
 import datetime
 import os
 
+import pyotp
 import yt_dlp
 from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from myapp import app, BASE_FOLDER_PATH
@@ -43,7 +44,7 @@ def facebook_register():
 
 @app.route('/facebook/page')
 @app.route('/facebook/page/<int:page>')
-def facebook(page=1):
+def facebook_page(page=1):
     per_page = 10  # Number of items per page
     pagination = Page.query.order_by(Page.followers_count.desc()).paginate(page=page, per_page=per_page,
                                                                            error_out=False)
@@ -73,7 +74,7 @@ def add_facebook_account():
 def bulk_add_facebook_account():
     if request.method == 'POST':
         data = request.form.get('bulk_data')  # Get bulk data from form
-        print(data)
+
         if not data:
             flash("No data provided", "error")
             return redirect(url_for('bulk_add_facebook_account'))
@@ -83,7 +84,6 @@ def bulk_add_facebook_account():
 
         for line in lines:
             try:
-                line = line.replace(' ', '|')
 
                 # Split by '|' and count fields
                 fields = line.split('|')
@@ -124,6 +124,19 @@ def bulk_add_facebook_account():
         db.session.commit()
         flash("Accounts added successfully", category="success")
     return render_template('/facebook/add_bulk_accounts.html')
+
+
+@app.route('/facebook/accounts/delete/<int:id>', methods=['POST'])
+def facebook_delete_account(id):
+    account = Account.query.get_or_404(id)
+
+    try:
+        db.session.delete(account)
+        db.session.commit()
+        flash("Account deleted successfully", category="success")
+        return redirect(url_for('facebook_accounts'))
+    except Exception as e:
+        flash(f"Error deleting account: {str(e)}", category="error")
 
 
 @app.route("/facebook/addpage")
@@ -281,16 +294,19 @@ def editor(page=1):
 @app.route('/facebook/accounts')
 @app.route('/facebook/accounts/<int:page>')
 def facebook_accounts(page=1):
+    devices = [
+        {'id': 1, 'udid': 'emululator-3272', 'name': 'Samsung S20', 'status': 'live'},
+        {'id': 2, 'udid': 'emululator-3472', 'name': 'Samsung S10', 'status': 'live'},
+        {'id': 3, 'udid': 'emululator-3273', 'name': 'Samsung S7', 'status': 'live'},
+        {'id': 4, 'udid': 'emululator-3172', 'name': 'Samsung S8', 'status': 'live'}
+    ]
     per_page = 10  # Number of items per page
     pagination = Account.query.order_by(Account.id.desc()).paginate(page=page, per_page=per_page,
                                                                     error_out=False)
-    for item in pagination.items:
-        print(item)
-
     if page > pagination.pages or page < 1:
         flash('Invalid page number', 'error')
         return redirect(url_for('facebook'))
-    return render_template('/facebook/accounts.html', items=pagination.items, pagination=pagination)
+    return render_template('/facebook/accounts.html', items=pagination.items, pagination=pagination, devices=devices)
     # return render_template('/facebook/accounts.html')
 
 
@@ -349,6 +365,29 @@ def telegram_channels():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+@app.route('/tools/security', methods=['GET', 'POST'])
+def security_tools():
+    return render_template('/tools/security_2fa.html')
+
+
+@app.route('/security/generate_code', methods=['POST'])
+def generate_code():
+    data = request.get_json()
+    fa_key = data.get('fa_key').replace(" ", "")
+
+    if not fa_key:
+        return jsonify({'error': 'Invalid 2FA key'}), 400
+
+    try:
+        # Create a TOTP object and generate the current TOTP code
+        totp = pyotp.TOTP(fa_key)
+        code = totp.now()  # Get the current code
+        print(code)
+        return jsonify({'code': code})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 
 @app.route('/scrape_videos', methods=['POST'])

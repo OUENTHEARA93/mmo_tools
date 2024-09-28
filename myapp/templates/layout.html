@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/AdminLTE/css/adminlte.min.css">
     <link rel="stylesheet" href="/static/AdminLTE/plugins/fontawesome-free/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -241,7 +242,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url_for('facebook') }}" class="nav-link {% block active_facebook_page %}{% endblock %}">
+                                <a href="{{ url_for('facebook_page') }}" class="nav-link {% block active_facebook_page %}{% endblock %}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Page</p>
                                 </a>
@@ -291,12 +292,18 @@
                             <p>Content Management</p>
                         </a>
                     </li>
-
                     <!-- Editor Management -->
                     <li class="nav-item">
                         <a href="{{ url_for('editor') }}" class="nav-link {% block active_editor %}{% endblock %}">
                             <i class="nav-icon fas fa-file-video"></i>
                             <p>Editor Management</p>
+                        </a>
+                    </li>
+                    <!-- Editor Management -->
+                    <li class="nav-item">
+                        <a href="{{ url_for('security_tools') }}" class="nav-link {% block active_security %}{% endblock %}">
+                            <i class="nav-icon fas fa-file-video"></i>
+                            <p>Security Management</p>
                         </a>
                     </li>
 
@@ -324,18 +331,27 @@
 
     <!-- Content Wrapper -->
     <div class="content-wrapper">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category,message in messages%}
-        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
-            {{ message }}.
-            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+<!--        {% with messages = get_flashed_messages(with_categories=true) %}-->
+<!--        {% if messages %}-->
+<!--        {% for category,message in messages%}-->
+<!--        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">-->
+<!--            {{ message }}.-->
+<!--            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">-->
 
-            </button>
+<!--            </button>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+<!--        {% endif %}-->
+<!--        {% endwith %}-->
+        <div class="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
         </div>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
         {% block content %}
         <!-- Page content will go here -->
         {% endblock %}
