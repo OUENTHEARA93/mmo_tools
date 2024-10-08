@@ -1,0 +1,116 @@
+{% extends 'layout.html' %}
+{% block active_telegram %}
+    active
+{% endblock %}
+{% block content %}
+<div class="content-header">
+    <h1>TELEGRAM MANAGEMENT</h1>
+</div>
+
+<div class="content">
+
+    <!-- Search Filter Section -->
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-4">
+                    <label for="category">Filter By:</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">All</option>
+                        <option value="name">Name</option>
+                    </select>
+                </div>
+
+                <!-- Text box for searching -->
+                <div class="col-md-4">
+                    <label for="search">Search:</label>
+                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                </div>
+
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Table Section -->
+    <table class="table table-bordered mt-4">
+        <thead>
+        <tr>
+            <th><input type="checkbox" id="checkAll"></th>
+            <th>No</th>
+            <th>Device</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Group</th>
+            <th>Channel</th>
+            <th>Monetization</th>
+            <th>Status</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        <tr>
+            <td><input type="checkbox" class="row-checkbox"></td>
+
+            <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>
+            <td>
+                <span class="badge badge-success">{{ item.device.name }}</span>
+            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ format_number(item.groups) }}</td>
+            <td>{{ format_number(item.channel) }}</td>
+            <td>{{ item.monetization }}</td>
+            <td>
+                <span class="badge badge-success">{{ item.status }}</span>
+            </td>
+            <td>{{ item.description }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="9">No items found</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- System Performance Section -->
+    <!--    <div class="mt-4">-->
+    <!--        <label>CPU Performance:</label><br>-->
+    <!--        <label>RAM Performance:</label>-->
+    <!--    </div>-->
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="dropdown-menu shadow" style="position: absolute; display: none;">
+        <a class="dropdown-item" href="#" id="context-edit">
+            <i class="fas fa-check"></i> Select
+        </a>
+        <a class="dropdown-item" href="#" id="context-edit12">
+            <i class="fas fa-times"></i> Unselect
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-monetizepage">
+            <i class="fas fa-dollar-sign"></i> Create Groups
+        </a>
+        <a class="dropdown-item" href="#" id="context-channel">
+            <i class="fas fa-dollar-sign"></i> Create Channel
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-change-device">
+            <i class="fas fa-marker"></i> Update Account info
+        </a>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/AdminLTE/js/telegram.js"></script>
+{% endblock %}

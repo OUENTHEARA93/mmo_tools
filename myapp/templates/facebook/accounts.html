@@ -9,106 +9,106 @@ active
 </div>
 
 <div class="content">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <!-- First row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Watch Video</label>
-                                    <input class="form-control" placeholder="Minutes" type="number">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Marketplace</label>
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Like Post</label>
-                                    <input class="form-control" placeholder="Likes" type="number">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Newsfeed</label>
-                                    <input class="form-control" placeholder="Minutes" type="number">
-                                </div>
-                            </div>
-                            <!-- Second row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Mute</label>
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Add Friends</label>
-                                    <input class="form-control" placeholder="Number" type="number">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Delay Post</label>
-                                    <input class="form-control" placeholder="Seconds" type="number">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Buttons -->
-                        <div class="row">
-                            <!--                                <button type="button" class="btn btn-success">Start</button>-->
-                            <div class="col-md-3">
-                                <button class="btn btn-primary btn-block" type="button">START</button>
-                            </div>
-                            <div class="col-md-3">
-                                <button class="btn btn-danger btn-block" type="button">STOP</button>
-                            </div>
-                            <!--                                <button type="button" class="btn btn-danger">Stop</button>-->
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Account Table -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Device Management</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <td><input type="checkbox" id="select-all-device"></td>
-                            <td>No</td>
-                            <th>UDID.</th>
-                            <th>Name</th>
-                            <th>IP Address</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in devices %}
-                        <tr>
-                            <td><input type="checkbox" class="select-row" data-id="1"></td>
-                            <td>{{ '%03d' % (loop.index) }}</td>
-                            <td>{{ item.udid }}</td>
-                            <td>{{ item.name }}</td>
-                            <td></td>
-                            <td><span class="badge badge-success">{{ item.status}}</span></td>
-                            <td>
-                                <!--                <a class="btn btn-sm btn-primary" href="{{ url_for('edit_item', id=item.id) }}">Edit</a>-->
-                                <a class="btn btn-sm btn-danger delete-btn" data-id="1"
-                                   href="#">Disconnect</a>
-                                <!--                <a class="btn btn-sm btn-info" href="{{ url_for('view_item', id=item.id) }}">View</a>-->
-                            </td>
-                        </tr>
-                        {% else %}
-                        <tr>
-                            <td colspan="9">No items found</td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--    <div class="row">-->
+    <!--        <div class="col-md-6">-->
+    <!--            <div class="card">-->
+    <!--                <div class="card-body">-->
+    <!--                    <form>-->
+    <!--                        <div class="row">-->
+    <!--                            &lt;!&ndash; First row of checkboxes &ndash;&gt;-->
+    <!--                            <div class="col-sm-6">-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Watch Video</label>-->
+    <!--                                    <input class="form-control" placeholder="Minutes" type="number">-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Marketplace</label>-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Like Post</label>-->
+    <!--                                    <input class="form-control" placeholder="Likes" type="number">-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Newsfeed</label>-->
+    <!--                                    <input class="form-control" placeholder="Minutes" type="number">-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                            &lt;!&ndash; Second row of checkboxes &ndash;&gt;-->
+    <!--                            <div class="col-sm-6">-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Mute</label>-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Add Friends</label>-->
+    <!--                                    <input class="form-control" placeholder="Number" type="number">-->
+    <!--                                </div>-->
+    <!--                                <div class="form-group">-->
+    <!--                                    <label><input type="checkbox"> Delay Post</label>-->
+    <!--                                    <input class="form-control" placeholder="Seconds" type="number">-->
+    <!--                                </div>-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                        &lt;!&ndash; Buttons &ndash;&gt;-->
+    <!--                        <div class="row">-->
+    <!--                            &lt;!&ndash;                                <button type="button" class="btn btn-success">Start</button>&ndash;&gt;-->
+    <!--                            <div class="col-md-3">-->
+    <!--                                <button class="btn btn-primary btn-block" type="button">START</button>-->
+    <!--                            </div>-->
+    <!--                            <div class="col-md-3">-->
+    <!--                                <button class="btn btn-danger btn-block" type="button">STOP</button>-->
+    <!--                            </div>-->
+    <!--                            &lt;!&ndash;                                <button type="button" class="btn btn-danger">Stop</button>&ndash;&gt;-->
+    <!--                        </div>-->
+    <!--                    </form>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        &lt;!&ndash; Account Table &ndash;&gt;-->
+    <!--        <div class="col-md-6">-->
+    <!--            <div class="card">-->
+    <!--                <div class="card-header">-->
+    <!--                    <h3 class="card-title">Device Management</h3>-->
+    <!--                </div>-->
+    <!--                <div class="card-body">-->
+    <!--                    <table class="table table-bordered">-->
+    <!--                        <thead>-->
+    <!--                        <tr>-->
+    <!--                            <td><input type="checkbox" id="select-all-device"></td>-->
+    <!--                            <td>No</td>-->
+    <!--                            <th>UDID.</th>-->
+    <!--                            <th>Name</th>-->
+    <!--                            <th>IP Address</th>-->
+    <!--                            <th>Status</th>-->
+    <!--                            <th>Action</th>-->
+    <!--                        </tr>-->
+    <!--                        </thead>-->
+    <!--                        <tbody>-->
+    <!--                        {% for item in devices %}-->
+    <!--                        <tr>-->
+    <!--                            <td><input type="checkbox" class="select-row" data-id="1"></td>-->
+    <!--                            <td>{{ '%03d' % (loop.index) }}</td>-->
+    <!--                            <td>{{ item.udid }}</td>-->
+    <!--                            <td>{{ item.name }}</td>-->
+    <!--                            <td></td>-->
+    <!--                            <td><span class="badge badge-success">{{ item.status}}</span></td>-->
+    <!--                            <td>-->
+    <!--                                &lt;!&ndash;                <a class="btn btn-sm btn-primary" href="{{ url_for('edit_item', id=item.id) }}">Edit</a>&ndash;&gt;-->
+    <!--                                <a class="btn btn-sm btn-danger delete-btn" data-id="1"-->
+    <!--                                   href="#">Disconnect</a>-->
+    <!--                                &lt;!&ndash;                <a class="btn btn-sm btn-info" href="{{ url_for('view_item', id=item.id) }}">View</a>&ndash;&gt;-->
+    <!--                            </td>-->
+    <!--                        </tr>-->
+    <!--                        {% else %}-->
+    <!--                        <tr>-->
+    <!--                            <td colspan="9">No items found</td>-->
+    <!--                        </tr>-->
+    <!--                        {% endfor %}-->
+    <!--                        </tbody>-->
+    <!--                    </table>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
     <!-- Search Filter Section -->
     <div class="filter-section">
@@ -132,27 +132,25 @@ active
                 </div>
 
                 <!-- Submit Button for filtering -->
-                <div class="col-md-1">
-                    <label>&nbsp;</label>
-                    <button class="btn btn-primary btn-block" type="submit">Filter</button>
-                </div>
+                <!--                <div class="col-md-1">-->
+                <!--                    <label>&nbsp;</label>-->
+                <!--                    <button class="btn btn-primary btn-block" type="submit">Filter</button>-->
+                <!--                </div>-->
                 <!-- Submit Button for filtering -->
+                <!--                <div class="col-md-2">-->
+                <!--                    <label>&nbsp;</label>-->
+                <!--                    <a href="{{ url_for('add_facebook_account')}}">-->
+                <!--                        <button class="btn btn-primary btn-block" type="button" id="addAccountBtn">Import New</button>-->
+                <!--                    </a>-->
+                <!--                </div>-->
                 <div class="col-md-2">
                     <label>&nbsp;</label>
-                    <a href="{{ url_for('add_facebook_account')}}">
-                        <button class="btn btn-primary btn-block" type="button" id="addAccountBtn">Import New</button>
-                    </a>
-                </div>
-                <div class="col-md-2">
-                    <label>&nbsp;</label>
-                    <a href="{{ url_for('bulk_add_facebook_account')}}">
-                        <button class="btn btn-primary btn-block" type="button" id="bulkImportAccountBtn">Bulk Import</button>
-                    </a>
+                    <button class="btn btn-primary btn-block" type="button" id="importAccountsBtn">IMPORT ACCOUNTS</button>
                 </div>
                 <div class="col-md-2">
                     <label>&nbsp;</label>
                     <a href="{{ url_for('facebook_register')}}">
-                        <button class="btn btn-primary btn-block" type="button" id="registerAccountBtn">Auto Reg</button>
+                        <button class="btn btn-primary btn-block" type="button" id="registerAccountBtn">FARM REG ACCOUNT</button>
                     </a>
                 </div>
 
@@ -160,11 +158,34 @@ active
         </form>
     </div>
 
+    <div class="modal" id="addFacebookAccountModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Import Facebook Accounts</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="facebookAccountForm">
+                        <div class="form-group">
+                            <label>Paste</label>
+                            <textarea class="form-control" placeholder="UID|Name|Password|2FA|Gender|Dob|Mail|PassMail" id="bulk_data" name="bulk_data" rows="8" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="submitAccountsBtn">Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Table for Account Data -->
-    <table class="table table-bordered mt-4">
+    <table class="table table-hover mt-4">
         <thead>
         <tr>
-            <th><input type="checkbox" id="select-all"></th>
+            <th><input type="checkbox" id="checkAll"></th>
             <th>No</th>
             <th>Device</th>
             <th>UID</th>
@@ -176,30 +197,37 @@ active
             <th>Last Check</th>
             <th>Status</th>
             <th>Description</th>
-            <th>Action</th> <!-- Add Action column -->
+            <!--            <th>Action</th> &lt;!&ndash; Add Action column &ndash;&gt;-->
         </tr>
         </thead>
         <tbody>
+
         {% for item in items %}
-        <tr>
-            <td><input type="checkbox" class="select-row" data-id="{{ item.id }}"></td>
+        <tr data-id="{{loop.index}}">
+            <td><input type="checkbox" class="account-checkbox" data-id="{{ item.id }}"></td>
             <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>
             <td><span class="badge badge-success">{{ item.device.name }}</span></td>
             <td>{{ item.uid }}</td>
             <td><a href="#">{{ item.username }}</a></td>
-            <td>{{ item.password }}</td>
-            <td>{{ item.two_fa }}</td>
+            <td>
+                <span class="password-mask">****</span>
+                <i class="fas fa-eye toggle-password" data-value="{{ item.password }}"></i>
+            </td>
+            <td>
+                <span class="twofa-mask">****</span>
+                <i class="fas fa-eye toggle-twofa" data-value="{{ item.two_fa }}"></i>
+            </td>
             <td>{{ item.gender }}</td>
             <td>{{ item.dob }}</td>
             <td>{{ item.last_login }}</td>
             <td><span class="badge badge-success">{{item.status}}</span></td>
-            <td></td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="{{ url_for('edit_item', id=item.id) }}">Edit</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}"
-                   href="{{ url_for('facebook_delete_account', id=item.id) }}">Delete</a>
-                <a class="btn btn-sm btn-info" href="{{ url_for('view_item', id=item.id) }}">View</a>
-            </td>
+            <td>Build with Max Farm Tools</td>
+            <!--            <td>-->
+            <!--                <a class="btn btn-sm btn-primary" href="{{ url_for('edit_item', id=item.id) }}">Edit</a>-->
+            <!--                <a class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}"-->
+            <!--                   href="{{ url_for('facebook_delete_account', id=item.id) }}">Delete</a>-->
+            <!--                <a class="btn btn-sm btn-info" href="{{ url_for('view_item', id=item.id) }}">View</a>-->
+            <!--            </td>-->
         </tr>
         {% else %}
         <tr>
@@ -235,117 +263,58 @@ active
     </nav>
     {% endif %}
 
+    <!-- Context Menu -->
+    <div id="context-menu" class="dropdown-menu shadow" style="position: absolute; display: none;">
+        <a class="dropdown-item" href="#" id="context-edit">
+            <i class="fas fa-check"></i> Select
+        </a>
+        <a class="dropdown-item" href="#" id="context-edit12">
+            <i class="fas fa-check"></i> Unselect
+        </a>
+        <a class="dropdown-item" href="#" id="context-copy">
+            <i class="fas fa-copy"></i> Get 2Fa Code
+        </a>
+<!--        <div class="dropdown-divider"></div>-->
+<!--        <a class="dropdown-item" href="#" id="context-accounts">-->
+<!--            <i class="fas fa-check"></i> Select All Accounts-->
+<!--        </a>-->
+<!--        <a class="dropdown-item" href="#" id="context-unselectaccount">-->
+<!--            <i class="fas fa-check"></i> Unselect All Accounts-->
+<!--        </a>-->
+        <div class="dropdown-divider"></div>
+<!--        <a class="dropdown-item" href="#" id="context-selectpage">-->
+<!--            <i class="fas fa-check"></i> Select All-->
+<!--        </a>-->
+<!--        <a class="dropdown-item" href="#" id="context-selectpageads">-->
+<!--            <i class="fas fa-check"></i> Unselect All-->
+<!--        </a>-->
+        <a class="dropdown-item" href="#" id="context-createpage">
+            <i class="fas fa-check"></i> Create Page
+        </a>
+        <a class="dropdown-item" href="#" id="context-view">
+            <i class="fas fa-life-ring"></i> Check live
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-delete1">
+            <i class="fas fa-sd-card"></i> Back up
+        </a>
+        <a class="dropdown-item" href="#" id="context-view1">
+            <i class="fas fa-eye"></i> Open Account
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-config">
+            <i class="fas fa-wrench"></i> Configuration
+        </a>
+        <a class="dropdown-item" href="#" id="context-change-device">
+            <i class="fas fa-marker"></i> Update Device info
+        </a>
+
+    </div>
+
+
 </div>
 {% endblock %}
 
 {% block scripts %}
-<script>
-$(document).ready(function() {
-
-        // DELETE Action
-            $('.delete-btn').click(function() {
-                var itemId = $(this).data('id');
-                var row = $('#item-' + itemId);
-
-                if (confirm('Are you sure you want to delete this item?')) {
-                    $.ajax({
-                        url: '/facebook/accounts/delete/' + itemId,
-                        type: 'POST',
-                        success: function(response) {
-                            if (response.status === 'success') {
-                                row.fadeOut(500, function() {
-                                    row.remove();
-                                });
-                            } else {
-                                alert('Failed to delete item');
-                            }
-                        },
-                        error: function() {
-                            alert('Error occurred while deleting item');
-                        }
-                    });
-                }
-
-            });
-
-        });
-
-
-    document.getElementById('search').addEventListener('keyup', function() {
-    // Get the search input value
-    const searchValue = this.value.toLowerCase();
-
-    // Get all table rows
-    const rows = document.querySelectorAll('table tbody tr');
-
-    rows.forEach(row => {
-      // Get the Page Name column (assuming it's the third column, index 2)
-      const pageNameCell = row.cells[4];
-
-      if (pageNameCell) {
-        const pageName = pageNameCell.textContent.toLowerCase();
-
-        // Show row if the Page Name matches the search value, otherwise hide it
-        if (pageName.includes(searchValue)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
-        }
-      }
-    });
-
-
-    // Handle the 'Select All' checkbox
-    $('#select-all').on('click', function() {
-        alert('Select All');
-        var isChecked = $(this).is(':checked');
-        $('.select-row').prop('checked', isChecked);
-        handleCheckboxChange();  // Call function to process AJAX
-    });
-
-    // Handle individual row selection
-    $('.select-row').on('click', function() {
-        // If all rows are selected, mark 'Select All' as checked
-        if ($('.select-row:checked').length === $('.select-row').length) {
-            $('#select-all').prop('checked', true);
-        } else {
-            $('#select-all').prop('checked', false);
-        }
-        handleCheckboxChange();  // Call function to process AJAX
-    });
-
-    // Function to process selection changes
-    function handleCheckboxChange() {
-        let selectedIds = [];
-        $('.select-row:checked').each(function() {
-            selectedIds.push($(this).data('id'));
-        });
-
-        // Perform AJAX request with selected IDs
-        if (selectedIds.length > 0) {
-            $.ajax({
-                url: '/your-server-endpoint',  // Replace with your actual endpoint
-                method: 'POST',
-                data: {
-                    selected_ids: selectedIds
-                },
-                success: function(response) {
-                    console.log("Selected IDs processed:", selectedIds);
-                    // Perform further actions based on server response
-                },
-                error: function(error) {
-                    console.error("Error:", error);
-                }
-            });
-        } else {
-            console.log("No IDs selected");
-        }
-    }
-
-
-
-
-  });
-
-</script>
+<script src="/static/AdminLTE/js/facebook_account.js"></script>
 {% endblock %}

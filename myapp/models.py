@@ -206,3 +206,110 @@ class ApiKey(db.Model):
 
     def __repr__(self):
         return f"<ApiKey {self.key}>"
+
+
+class Bank(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    bank_name = db.Column(db.String(80), nullable=False)
+    account_number = db.Column(db.String(20), nullable=False)
+    account_name = db.Column(db.String(80), nullable=False)
+    swift_code = db.Column(db.String(20), nullable=False)
+    routing_number = db.Column(db.String(9), nullable=True)
+    gmail = db.Column(db.String(120), nullable=True)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+
+
+class Gmail(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
+    name = db.Column(db.String(120), nullable=False)
+    gmail = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    verify = db.Column(db.String(120), nullable=True)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+
+    device = db.relationship('Device', backref=db.backref('gmail', lazy=True))
+
+
+class Youtube(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    gmail_id = db.Column(db.Integer, db.ForeignKey('gmail.id'))  # Associated account
+    name = db.Column(db.String(120), nullable=False)
+    subscriber = db.Column(db.Integer, nullable=False)
+    monetization = db.Column(db.String(100), nullable=False)
+    earning = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+    account = db.relationship('Gmail', backref=db.backref('youtube', lazy=True))
+
+    def __repr__(self):
+        return f"<account {self.gmail_id}>"
+
+
+class Instagram(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    gmail_id = db.Column(db.Integer, db.ForeignKey('gmail.id'))  # Associated account
+    name = db.Column(db.String(120), nullable=False)
+    follower = db.Column(db.Integer, nullable=False)
+    monetization = db.Column(db.String(100), nullable=False)
+    earning = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+    account = db.relationship('Gmail', backref=db.backref('instagram', lazy=True))
+
+    def __repr__(self):
+        return f"<account {self.gmail_id}>"
+
+
+class Telegram(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
+    phone = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(120), nullable=False)
+    channel = db.Column(db.Integer, nullable=False)
+    groups = db.Column(db.Integer, nullable=False)
+    monetization = db.Column(db.String(100), nullable=False)
+    # earning = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+
+    device = db.relationship('Device', backref=db.backref('telegram', lazy=True))
+
+    # tkaccount = db.relationship('Gmail', backref=db.backref('Tiktok', lazy=True))
+
+    def __repr__(self):
+        return f"<account {self.gmail_id}>"
+
+
+class Tiktok(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    gmail_id = db.Column(db.Integer, db.ForeignKey('gmail.id'))  # Associated account
+    device_id = db.Column(db.Integer, db.ForeignKey('device.id'))
+    name = db.Column(db.String(120), nullable=False)
+    follower = db.Column(db.Integer, nullable=False)
+    following = db.Column(db.Integer, nullable=False)
+    monetization = db.Column(db.String(100), nullable=False)
+    earning = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
+
+    device = db.relationship('Device', backref=db.backref('tiktok', lazy=True))
+    tkaccount = db.relationship('Gmail', backref=db.backref('tiktok', lazy=True))
+
+    def __repr__(self):
+        return f"<account {self.gmail_id}>"
+
+
+class Website(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    domain = db.Column(db.String(120), nullable=False)
+    hosting = db.Column(db.String(120), nullable=False)
+    gmail = db.Column(db.String(120), nullable=False)
+    password = db.Column(db.String(120), nullable=False)
+    link = db.Column(db.String(120), nullable=False)
+    adsnetwork = db.Column(db.String(80), nullable=False)
+    earning = db.Column(db.String(20), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+    description = db.Column(db.String(200), nullable=True)

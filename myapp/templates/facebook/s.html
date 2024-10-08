@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div class="modal" id="regFacebookAccountModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Import Facebook Accounts</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="facebookRegAccountForm">
+          <div class="row">
+            <!-- First row of checkboxes -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="category">Country:</label>
+                <select class="form-control" id="country" name="country">
+                  <option value="ALL">All</option>
+                  <option value="KHM">Cambodia</option>
+                  <option value="THI">Thailand</option>
+                  <option value="PHI">Philippine</option>
+                  <option value="IND">India</option>
+                  <option selected value="USA">United State</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="category">Get OTP Code:</label>
+                <select class="form-control" id="otpcode" name="otpcode">
+                  <option selected value="simonlline">Online-SIM</option>
+                  <option value="gmail">Gmail</option>
+                  <option value="yandex">Yandex</option>
+                  <option value="outlook">Outlook</option>
+                  <option value="hotmail">Hotmail</option>
+                  <option value="tempmail">Temp-mail</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="category">Online SIM:</label>
+                <select class="form-control" id="otpSim" name="otpcode">
+                  <option selected value="otpSim">5Sim.net</option>
+                  <option value="gmail">SMSMan</option>
+                  <option value="yandex">SMSpool</option>
+
+                </select>
+              </div>
+              <!-- Buttons -->
+              <div class="form-inline">
+                <button class="btn btn-primary btn-block" type="button">START</button>
+                <button class="btn btn-danger btn-block" type="button">STOP</button>
+              </div>
+
+
+            </div>
+            <!-- Second row of checkboxes -->
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="category">Gender:</label>
+                <select class="form-control" id="gender" name="gender">
+                  <option selected value="female">Female</option>
+                  <option value="female">Male</option>
+                  <option value="male">Random</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label><input checked type="checkbox"> Add Friends</label>
+                <input class="form-control" placeholder="Number" type="number" value="5">
+              </div>
+              <div class="form-group">
+                <label> Threading</label>
+                <input class="form-control" placeholder="Seconds" type="number" value="5">
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <label><input checked type="checkbox"> Check-in</label>
+                </div>
+                <div class="col-md-6">
+                  <label><input checked type="checkbox"> Marketplace</label>
+                </div>
+                <div class="col-md-6">
+                  <label><input checked type="checkbox"> Newsfeed</label>
+                </div>
+                <div class="col-md-6">
+                  <label><input checked type="checkbox"> Watch Video</label>
+                </div>
+                <div class="col-md-6">
+                  <label><input checked type="checkbox"> Like Page</label>
+                </div>
+                <div class="col-md-6">
+                  <label><input type="checkbox"> Enable 2FA</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="submitAccountsBtn">Add New</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

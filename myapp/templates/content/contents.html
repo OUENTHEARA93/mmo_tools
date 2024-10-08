@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
+
 {% block active_content %}
-    active
+active
 {% endblock %}
 {% block content %}
 <div class="content-header">
@@ -9,48 +10,51 @@
 
 <div class="content">
     <!-- Form Section -->
-    <form id="download-form" method="POST">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="videoLinks">Video Links:</label>
-                    <textarea class="form-control" id="videoLinks" name="videoLinks" rows="5"></textarea>
+    <div class="modal" id="downloadVideoModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Download Videos</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="savefile">Save File as</label>
-                    <select class="form-control" id="savefile" name="savefile" required>
-                        <option value="MP3">MP3</option>
-                        <option value="MP4">MP4</option>
-                        <option value="AVI">AVI</option>
-                        <option value="MKV">MKV</option>
-                    </select>
+                <div class="modal-body">
+                    <form id="download-form" method="POST">
+                        <div>
+                            <div class="form-group">
+                                    <label for="videoLinks">Video Links:</label>
+                                    <textarea class="form-control" id="videoLinks" name="videoLinks" rows="5"></textarea>
+                                </div>
+                            <div class="form-group">
+                                    <label for="savefile">Save File as</label>
+                                    <select class="form-control" id="savefile" name="savefile" required>
+                                        <option value="MP3">MP3</option>
+                                        <option selected value="MP4">MP4</option>
+                                        <option value="AVI">AVI</option>
+                                        <option value="MKV">MKV</option>
+                                    </select>
+                                </div>
+                            <div class="form-group">
+                                    <label for="video_size">Video Size:</label>
+                                    <select class="form-control" id="video_size" name="video_size" required>
+                                        <option value="1080">1080</option>
+                                        <option selected value="720">720</option>
+                                        <option value="2K">2K</option>
+                                    </select>
+                                </div>
+                            <div class="form-group">
+                                    <label for="folderName">Folder Name</label>
+                                    <input class="form-control" id="folderName" name="folderName" placeholder="path video location" required type="text">
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="video_size">Video Size:</label>
-                    <select class="form-control" id="video_size" name="video_size" required>
-                        <option value="1080">1080</option>
-                        <option value="720">720</option>
-                        <option value="2K">2K</option>
-                    </select>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" id="cancelBtn" type="button">CANCEL</button>
+                    <button class="btn btn-primary" id="startDownloadBtn" type="button">START DOWNLOAD</button>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="folderName">Folder Name</label>
-                    <input type="text" class="form-control" id="folderName" name="folderName" required>
-                </div>
-            </div>
-
-            <div class="col-md-12">
-<!--                <button type="submit" class="btn btn-primary">Download</button>-->
-                <button type="submit" id="downloadBtn" class="btn btn-primary">Download</button>
             </div>
         </div>
-    </form>
+    </div>
 
     <!-- Search Filter Section -->
     <div class="filter-section">
@@ -59,7 +63,7 @@
                 <!-- Combo box for filtering by category -->
                 <div class="col-md-4">
                     <label for="category">Filter By:</label>
-                    <select id="category" name="category" class="form-control">
+                    <select class="form-control" id="category" name="category">
                         <option value="">All</option>
                         <option value="name">Name</option>
                     </select>
@@ -68,170 +72,78 @@
                 <!-- Text box for searching -->
                 <div class="col-md-4">
                     <label for="search">Search:</label>
-                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                    <input class="form-control" id="search" name="search" placeholder="Enter keyword..." type="text">
                 </div>
 
                 <!-- Submit Button for filtering -->
                 <div class="col-md-2">
                     <label>&nbsp;</label>
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    <button class="btn btn-primary btn-block" id="pasteLinkDownload" type="button">Paste Links</button>
+                </div>
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button type="button" id="startDownloadButton" class="btn btn-primary btn-block">Start Download</button>
                 </div>
             </div>
         </form>
     </div>
 
-
     <!-- Table Section -->
-    <table id="videoTable" class="table table-bordered mt-4">
+    <table class="table table-bordered mt-4" id="videoTable">
         <thead>
         <tr>
+            <th><input type="checkbox" id="checkAll"></th>
             <th>No</th>
             <th>Folder Name</th>
-            <th>Path</th>
+            <th>Resource</th>
+            <th>Title</th>
             <th>Size</th>
-            <th>Videos</th>
-            <th>Views</th>
+            <th>Durations</th>
+            <th>Video Link</th>
             <th>Status</th>
             <th>Description</th>
         </tr>
         </thead>
         <tbody>
-<!--        {% for file in files %}-->
-<!--        <tr>-->
-<!--            <td>{{ loop.index }}</td>-->
-<!--            <td>{{ file.name }}</td>-->
-<!--            <td>{{ file.path }}</td>-->
-<!--            <td>{{ file.status }}</td>-->
-<!--            <td>{{ file.size }} KB</td>-->
-<!--            <td>{{ file.videos }}</td>-->
-<!--            <td>{{ file.photos }}</td>-->
-<!--            <td>{{ file.description }}</td>-->
-<!--        </tr>-->
-<!--        {% endfor %}-->
+
         </tbody>
     </table>
 
+    <!-- Context Menu -->
+    <div class="dropdown-menu shadow" id="context-menu" style="position: absolute; display: none;">
+        <a class="dropdown-item" href="#" id="context-edit">
+            <i class="fas fa-check"></i> Select
+        </a>
+        <a class="dropdown-item" href="#" id="context-unselect">
+            <i class="fas fa-times"></i> Unselect
+        </a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-view">
+            <i class="fas fa-eye"></i> Download All
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-copy">
+            <i class="fas fa-times"></i> Copy
+        </a>
+        <a class="dropdown-item" href="#" id="context-delete">
+            <i class="fas fa-trash-alt"></i> Delete
+        </a>
+        <a class="dropdown-item" href="#" id="context-update">
+            <i class="fas fa-marker"></i> Update Video info
+        </a>
+
+
+    </div>
 </div>
+
+
 {% endblock %}
 {% block scripts %}
+<script src="/static/AdminLTE/js/download.js"></script>
 
-<script>
-
-$('#download-form').on('submit', function(e) {
-    e.preventDefault();  // Prevent normal form submission
-    var downloadBtn = $('#downloadBtn')
-    downloadBtn.prop('disabled', true).text('Downloading...');
-    const videoLinks = $('textarea[name="videoLinks"]').val().split('\n');  // Get video URLs
-    var formData = new FormData(this);
-
-    $.ajax({
-        url: '/scrape_videos',  // Endpoint for scraping video details
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({ video_links: videoLinks }),  // Send video links to backend
-        success: function(data) {
-            downloadData(formData,data)
-            downloadBtn.prop('disabled', false).text('Download');
-        },
-        error: function(error) {
-            console.error('Error:', error);
-        }
-    });
-});
-
-// Function to update table with scraped data
-function updateTable(videoData) {
-    const tableBody = $('#videoTable tbody');  // Get the table body
-    const videoLinks = $('#videoLinks');
-    tableBody.empty();  // Clear existing rows
-    videoLinks.empty();
-    videoData.forEach((video, index) => {
-        const row = `
-            <tr>
-                <td>${index + 1}</td>
-                <td>${video.title}</td>
-                <td>${video.path}</td>
-                <td>${(video.size / 1024 / 1024).toFixed(2)} MB</td>
-                <td>${video.duration} minutes</td>
-                <td>${video.views} views</td>  <!-- Placeholder -->
-                <td>Completed</td>  <!-- Example status -->
-                <td></td>
-<!--                <td>${video.description}</td>-->
-            </tr>
-        `;
-        tableBody.append(row);  // Append row to table
-    });
-
-}
-
-function downloadData(formData,data1){
-    $.ajax({
-            url: '/download',  // The URL for the download endpoint
-            type: 'POST',
-            data: formData,
-            processData: false,  // Prevent jQuery from processing the data
-            contentType: false,  // Prevent jQuery from setting content-type
-            success: function(data) {
-                // On success, display success alert or update table
-                alert(data)
-                updateTable(data1);  // Call function to update table with scraped data
-<!--                if (data.success) {-->
-<!--                    alert('Download completed successfully!');-->
-
-<!--                } else {-->
-<!--                    alert('Download failed! Please try again.');-->
-<!--                }-->
-            },
-            error: function(xhr, status, error) {
-                // Handle error case
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
-            },
-            complete: function() {
-                // Re-enable the button and change text back to "Download"
-                downloadBtn.prop('disabled', false).text('Download');
-            }
-        });
-}
-
-
-
-<!--$('#download-form').on('submit', function(e) {-->
-<!--    e.preventDefault();  // Prevent the form from submitting normally-->
-
-<!--    var downloadBtn = $('#downloadBtn');-->
-<!--    var formData = new FormData(this);  // Create FormData object-->
-
-<!--    // Disable button and change text to "Downloading..."-->
-<!--    downloadBtn.prop('disabled', true).text('Downloading...');-->
-
-<!--    $.ajax({-->
-<!--        url: '/download',  // The URL for the download endpoint-->
-<!--        type: 'POST',-->
-<!--        data: formData,-->
-<!--        processData: false,  // Prevent jQuery from processing the data-->
-<!--        contentType: false,  // Prevent jQuery from setting content-type-->
-<!--        success: function(data) {-->
-<!--            // On success, display success alert or update table-->
-<!--            if (data.success) {-->
-<!--                alert('Download completed successfully!');-->
-<!--            } else {-->
-<!--                alert('Download failed! Please try again.');-->
-<!--            }-->
-<!--        },-->
-<!--        error: function(xhr, status, error) {-->
-<!--            // Handle error case-->
-<!--            console.error('Error:', error);-->
-<!--            alert('An error occurred. Please try again.');-->
-<!--        },-->
-<!--        complete: function() {-->
-<!--            // Re-enable the button and change text back to "Download"-->
-<!--            downloadBtn.prop('disabled', false).text('Download');-->
-<!--        }-->
-<!--    });-->
-<!--});-->
-
-
-
-</script>
 {% endblock %}
+
+<!--{% block styles %}-->
+<!--<link href="/static/AdminLTE/css/download-menu.css" rel="stylesheet">-->
+<!--{% endblock %}-->

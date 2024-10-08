@@ -1,181 +1,14 @@
 {% extends 'layout.html' %}
+{% block menu_open_facebook %} menu-close {% endblock %}
 {% block active_device %}
-    active
+active
 {% endblock %}
-
 {% block content %}
 <div class="content-header">
     <h1>DEVICE MANAGEMENT</h1>
 </div>
 
 <div class="content">
-    <!-- Form Section -->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <!-- First row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Create New</label>
-                                    <input type="number" class="form-control" placeholder="Minutes">
-                                </div>
-                                <!--                                    <div class="form-group">-->
-                                <!--                                        <label><input type="checkbox"> Marketplace</label>-->
-                                <!--                                    </div>-->
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Random Device</label>
-                                    <input type="number" class="form-control" placeholder="Samsung">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Install apk</label>
-                                    <input type="number" class="form-control" placeholder="enter apk path location">
-                                </div>
-                            </div>
-                            <!-- Second row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Block Location</label>
-                                    <input type="number" class="form-control" placeholder="Minutes">
-                                </div>
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Clone</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Number">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Delay Post</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Seconds">-->
-<!--                                </div>-->
-                            </div>
-                        </div>
-                        <!-- Buttons -->
-                        <div class="row">
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-primary btn-block">START</button>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-danger btn-block">STOP</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!--            <div class="col-md-6">-->
-        <!--                <div class="card">-->
-        <!--                    <div class="card-body">-->
-        <!--                        <form>-->
-        <!--                            <div class="row">-->
-        <!--                                &lt;!&ndash; First row of checkboxes &ndash;&gt;-->
-        <!--                                <div class="col-sm-6">-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Watch Video</label>-->
-        <!--                                        <input type="number" class="form-control" placeholder="Minutes">-->
-        <!--                                    </div>-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Copy Link</label>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Like Post</label>-->
-        <!--                                        <input type="number" class="form-control" placeholder="Likes">-->
-        <!--                                    </div>-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Newsfeed</label>-->
-        <!--                                        <input type="number" class="form-control" placeholder="Minutes">-->
-        <!--                                    </div>-->
-        <!--                                </div>-->
-        <!--                                &lt;!&ndash; Second row of checkboxes &ndash;&gt;-->
-        <!--                                <div class="col-sm-6">-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Mute</label>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Add Friends</label>-->
-        <!--                                        <input type="number" class="form-control" placeholder="Number">-->
-        <!--                                    </div>-->
-        <!--                                    <div class="form-group">-->
-        <!--                                        <label><input type="checkbox"> Delay Post</label>-->
-        <!--                                        <input type="number" class="form-control" placeholder="Seconds">-->
-        <!--                                    </div>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                            &lt;!&ndash; Buttons &ndash;&gt;-->
-        <!--                            <div class="row">-->
-        <!--                                <div class="col-md-3">-->
-        <!--                                    <button type="button" class="btn btn-primary btn-block">START</button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col-md-3">-->
-        <!--                                    <button type="button" class="btn btn-danger btn-block">STOP</button>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-
-        <!--                        </form>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!-- Account Table -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Device Management</h3>
-                </div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>IP Address</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <!-- Dynamic data rows go here -->
-                        <tr>
-                            <td>01</td>
-                            <td>Samsung S10</td>
-                            <td>192.168.1.3</td>
-                            <td><span class="bg-success">Live</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
-                            </td> <!-- Add Action column -->
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Samsung S9</td>
-                            <td>192.168.1.2</td>
-                            <td><span class="bg-success">Live</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
-                            </td> <!-- Add Action column -->
-                        </tr>
-                        <tr>
-                            <td>03</td>
-                            <td>Samsung S8</td>
-                            <td>192.168.1.4</td>
-                            <td><span class="bg-success">Live</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
-                            </td> <!-- Add Action column -->
-                        </tr>
-                        <tr>
-                            <td>04</td>
-                            <td>Samsung S7</td>
-                            <td>192.168.1.5</td>
-                            <td><span class="bg-success">Live</span></td>
-                            <td>
-                                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>
-                            </td> <!-- Add Action column -->
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Search Filter Section -->
     <div class="filter-section">
@@ -183,178 +16,226 @@
             <div class="row">
                 <!-- Combo box for filtering by category -->
                 <div class="col-md-2">
-                    <label for="category">Filter By:</label>
-                    <select id="category" name="category" class="form-control">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category" name="category">
                         <option value="">All</option>
-                        <option value="name">Name</option>
+                        <option value="Category1">Short</option>
+                        <option value="Category1">Monetization</option>
+                        <option value="Category2">Traffic</option>
+
                     </select>
                 </div>
 
                 <!-- Text box for searching -->
                 <div class="col-md-3">
                     <label for="search">Search:</label>
-                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                    <input class="form-control" id="search" name="search" placeholder="Enter keyword..." type="text">
                 </div>
 
                 <!-- Submit Button for filtering -->
+                <!--                <div class="col-md-2">-->
+                <!--                    <label>&nbsp;</label>-->
+                <!--                    <button class="btn btn-primary btn-block" type="submit">Filter</button>-->
+                <!--                </div>-->
+                <!-- Submit Button for filtering -->
                 <div class="col-md-2">
                     <label>&nbsp;</label>
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    <button class="btn btn-primary btn-block" id="checkDevice" type="button">Check Device</button>
+                    <!-- Dialog Form for Adding New Bank -->
+                </div>
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary btn-block" id="addNewBtn" type="button">Add New</button>
+                    <!-- Dialog Form for Adding New Bank -->
                 </div>
             </div>
         </form>
     </div>
-
-    <!-- Table Section -->
-    <table class="table table-bordered mt-4">
+    <div class="modal" id="addDeviceModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Device</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="gmailForm">
+                        <div class="mb-2">
+                            <label class="form-label" for="name">Name</label>
+                            <input class="form-control" id="name" required type="text">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="gmail">Gmail</label>
+                            <input class="form-control" id="gmail" required type="text">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" id="password" required type="text">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="verify">Verify Phone/Gmail(Optional)</label>
+                            <input class="form-control" id="verify" type="phone">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="status">Status</label>
+                            <select class="form-control" id="status">
+                                <option value="Enable">Enable</option>
+                                <option value="Disable">Disable</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                    <button class="btn btn-primary" id="submitGmailBtn" type="button">Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table for Account Data -->
+    <table class="table table-hover mt-4">
         <thead>
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Traffic</th>
-            <th>Earning</th>
-            <th>Website</th>
-            <th>Last Check</th>
-            <th>Monetization</th>
-            <th>Description</th>
-            <th>Action</th> <!-- Add Action column -->
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr>
-            <td>1</td>
-            <td>Clips</td>
-            <td>Facebook - Bonus</td>
-            <td>1.1M</td>
-            <td><b>$2.3K</b></td>
-            <td>cartoonfun.site</td>
-            <td>2024-09-15</td>
-            <td>Enable</td>
-            <td>Invited Bonus - Restricted Payout</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
-                <a class="btn btn-sm btn-info" href="/view/1">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Baby Clips</td>
-            <td>Facebook - Bonus</td>
-            <td>1.1M</td>
-            <td><b>$2.3K</b></td>
-            <td>babynews26.com</td>
-            <td>2024-09-15</td>
-            <td>Enable</td>
-            <td>Invited Bonus - Restricted Payout</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
-                <a class="btn btn-sm btn-info" href="/view/1">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Evelyn Harrell</td>
-            <td>Facebook - Bonus</td>
-            <td>16.1M</td>
-            <td><b>$1.3K</b></td>
-            <td>animallove152.com</td>
-            <td>2024-09-15</td>
-            <td>Enable</td>
-            <td>Invited Bonus - Restricted Payout</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
-                <a class="btn btn-sm btn-info" href="/view/1">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>Neymar</td>
-            <td>Facebook - Bonus</td>
-            <td>88.1M</td>
-            <td><b>$6.3K</b></td>
-            <td>kupdatenews24.com</td>
-            <td>2024-09-15</td>
-            <td>Enable</td>
-            <td>Invited Bonus - Restricted Payout</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
-                <a class="btn btn-sm btn-info" href="/view/1">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>Media Idol</td>
-            <td>Facebook - Bonus</td>
-            <td>3.1M</td>
-            <td><b>$1.3K</b></td>
-            <td>animallove152.com</td>
-            <td>2024-09-15</td>
-            <td>Enable</td>
-            <td>Invited Bonus - Restricted Payout</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="/edit/1">Edit</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Delete</a>
-                <a class="btn btn-sm btn-info" href="/view/1">View</a>
-            </td>
-        </tr>
-
-        </tbody>
+                <tr>
+                    <th style="width:20px;"><input type="checkbox" id="checkAll"></th>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Version</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Last Open</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="deviceTable">
+                {% for item in items %}
+                <tr>
+                    <td><input type="checkbox" class="row-checkbox"></td>
+                    <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>
+                    <td>
+<!--                        {{ item.name }}-->
+                        <span class="badge badge-success">{{ item.name }}</span>
+                    </td>
+                    <td>{{ item.type }}</td>
+                    <td>{{ item.os_version }}</td>
+                    <td>Facebook</td>
+                    <td>
+                        <span class="badge badge-success">{{ item.status }}</span>
+                    </td>
+                    <td>{{ item.last_login }}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
     </table>
+    <!-- Pagination Controls -->
+    {% if pagination.pages > 1 %}
     <nav aria-label="Page navigation">
         <ul class="pagination">
-
-
-            <li class="page-item active">
-                <a class="page-link" href="/facebook/page/1">1</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/2">2</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/3">3</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/4">4</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/5">5</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/10">10</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/11">11</a>
-            </li>
-
-
+            {% if pagination.has_prev %}
             <li class="page-item">
-                <a class="page-link" href="/facebook/page/2">Next</a>
+                <a class="page-link" href="{{ url_for('check_device', page=pagination.prev_num) }}">Previous</a>
             </li>
+            {% endif %}
 
+            {% for page_num in pagination.iter_pages() %}
+            {% if page_num %}
+            <li class="page-item {{ 'active' if page_num == pagination.page else '' }}">
+                <a class="page-link" href="{{ url_for('check_device', page=page_num) }}">{{ page_num }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('check_device', page=pagination.next_num) }}">Next</a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
-    <!-- System Performance Section -->
-    <!--    <div class="mt-4">-->
-    <!--        <label>CPU Performance:</label><br>-->
-    <!--        <label>RAM Performance:</label>-->
-    <!--    </div>-->
+    {% endif %}
+
+
+    <!-- Context Menu -->
+    <div class="dropdown-menu shadow" id="context-menu" style="position: absolute; display: none;">
+        <a class="dropdown-item" href="#" id="context-edit">
+            <i class="fas fa-check"></i> Select
+        </a>
+        <a class="dropdown-item" href="#" id="context-unselect">
+            <i class="fas fa-times"></i> Unselect
+        </a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-view">
+            <i class="fas fa-eye"></i> Install Apk File
+        </a>
+        <a class="dropdown-item" href="#" id="context-create">
+            <i class="fas fa-cogs"></i> Check Root
+        </a>
+        <a class="dropdown-item" href="#" id="context-ipaddress">
+            <i class="fas fa-network-wired"></i> Check Ip Address
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-copy">
+            <i class="fas fa-times"></i> Copy
+        </a>
+        <a class="dropdown-item" href="#" id="context-delete">
+            <i class="fas fa-trash-alt"></i> Delete
+        </a>
+        <a class="dropdown-item" href="#" id="context-update">
+            <i class="fas fa-marker"></i> Update Account info
+        </a>
+
+    </div>
+
 </div>
 {% endblock %}
+{% block scripts %}
+<script src="/static/AdminLTE/js/device.js"></script>
+<!--<script>-->
+
+
+<!--    $(document).ready(function () {-->
+
+<!--            $('#addNewBtn').click(function() {-->
+
+<!--                $('#addDeviceModal').modal('show');-->
+<!--            });-->
+
+<!--            $('#checkDevice').click(function () {-->
+<!--                loadData();-->
+<!--            });-->
+
+
+<!--            function loadData(){-->
+<!--                $.ajax({-->
+<!--                    url: "/check_device",-->
+<!--                    method: "GET",-->
+<!--                    success: function (data) {-->
+<!--                        var rows = "";-->
+
+<!--                        data.forEach(function (device) {-->
+<!--                            rows += "<tr>";-->
+<!--                            rows += "<td><input type='checkbox'>"+ "</td>";-->
+<!--                            rows += "<td>" + device.No + "</td>";-->
+<!--                            rows += "<td>" + device.Name + "</td>";-->
+<!--                            rows += "<td>" + device['OS Version'] + "</td>";-->
+<!--                            rows += "<td>" + device['App Installed'] + "</td>";-->
+<!--                            rows += "<td>" + device.Category + "</td>";-->
+<!--                            rows += "<td><span class='badge badge-success'>" + device.Status + "</span></td>";-->
+<!--                            rows += "<td>" + device.Description + "</td>";-->
+<!--                            rows += "</tr>";-->
+<!--                        });-->
+<!--                        $('#deviceTable').html(rows);-->
+<!--                    }-->
+<!--                });-->
+<!--            };-->
+<!--        });-->
+
+<!--</script>-->
+{% endblock %}
+

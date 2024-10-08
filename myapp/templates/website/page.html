@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% block menu_open_facebook %} menu-close {% endblock %}
-{% block active_instagram %}
+{% block active_website %}
 active
 {% endblock %}
 {% block content %}
 <div class="content-header">
-    <h1>INSTAGRAM MANAGEMENT</h1>
+    <h1>WEBSITE MANAGEMENT</h1>
 </div>
 
 <div class="content">
@@ -113,7 +113,7 @@ active
 
     <!-- Context Menu -->
     <div id="context-menu" class="dropdown-menu shadow" style="position: absolute; display: none;">
-        <a class="dropdown-item" href="#" id="context-edit">
+        <a class="dropdown-item" href="#" id="context-select">
             <i class="fas fa-check"></i> Select
         </a>
         <a class="dropdown-item" href="#" id="context-edit12">
@@ -121,11 +121,11 @@ active
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#" id="context-monetizepage">
-            <i class="fas fa-dollar-sign"></i> Upload Videos
+            <i class="fas fa-dollar-sign"></i> Post Article
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#" id="context-change-device">
-            <i class="fas fa-marker"></i> Update Account info
+            <i class="fas fa-marker"></i> Update Website info
         </a>
 
     </div>
@@ -136,12 +136,11 @@ active
         <tr>
             <th><input type="checkbox" id="checkAll"></th>
             <th>No</th>
-            <th>Device</th>
-            <th>Name</th>
-            <th>Follower</th>
+            <th>Domain</th>
+            <th>Hosting</th>
 <!--            <th>Gmail</th>-->
 <!--            <th>Password</th>-->
-            <th>Monetization</th>
+            <th>Website</th>
             <th>Earning</th>
             <th>Status</th>
             <th>Description</th>
@@ -150,15 +149,14 @@ active
         </thead>
         <tbody>
         {% for item in items %}
-        <tr>
+        <tr data-id="{{ item.id }}">
             <td><input type="checkbox" class="row-checkbox"></td>
             <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>
-            <td>
-                <span class="badge badge-success">{{ item.account.device.name }}</span>
-            </td>
-            <td>{{ item.name }}</td>
-            <td>{{ format_number(item.follower) }}</td>
-            <td>{{ item.monetization }}</td>
+            <td>{{ item.domain }}</td>
+            <td><a href="#">{{ item.hosting }}</a></td>
+<!--            <td>{{ item.gmail }}</td>-->
+<!--            <td>{{ item.password }}</td>-->
+            <td>{{ item.link }}</td>
             <td>
                 <span class="badge badge-warning">${{ item.earning }}</span>
             </td>
@@ -179,6 +177,6 @@ active
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="/static/AdminLTE/js/instagram_account.js"></script>
-{% endblock %}
+<script src="/static/AdminLTE/js/website.js"></script>
 
+{% endblock %}

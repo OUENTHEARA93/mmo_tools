@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
+{% block menu_open_facebook %} menu-close {% endblock %}
 {% block active_gmail %}
-    active
+active
 {% endblock %}
 {% block content %}
 <div class="content-header">
@@ -8,173 +9,6 @@
 </div>
 
 <div class="content">
-    <!-- Form to Input New Account -->
-    <div class="row">
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <!-- First row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Reg Gmail</label>
-                                    <select id="categorys" name="categorys" class="form-control">
-                                        <option value="">Online-SIM</option>
-                                        <option value="name">No Verify</option>
-                                    </select>
-                                </div>
-                                <!--                                    <div class="form-group">-->
-                                <!--                                        <label><input type="checkbox"> Marketplace</label>-->
-                                <!--                                    </div>-->
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="text" class="form-control" placeholder="*******">
-                                </div>
-                                <div class="form-group">
-                                    <label>Proxy</label>
-                                    <input type="text" class="form-control" placeholder="0.0.0.0">
-                                </div>
-                            </div>
-                            <!-- Second row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label> Select Operation</label>
-                                    <select id="opSMS" name="opSMS" class="form-control">
-                                        <option value="">SMSMan</option>
-                                        <option value="name">5Sim.net</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> User agent</label>
-                                    <input type="text" class="form-control" placeholder="....">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Threading</label>
-                                    <input type="number" class="form-control" placeholder="Seconds">
-                                </div>
-                            </div>
-                        </div>
-                        <!--                        &lt;!&ndash; Buttons &ndash;&gt;-->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-md-3">-->
-                        <!--                                <button type="button" class="btn btn-primary btn-block">SCRAPE</button>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-md-3">-->
-                        <!--                                <button type="button" class="btn btn-danger btn-block">STOP</button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="card">
-                <div class="card-body">
-                    <form>
-                        <div class="row">
-                            <!-- First row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Post Website</label>
-                                    <textarea rows="4" class="form-control" placeholder="www.xxxx.com"></textarea>
-                                </div>
-                                <!--                                    <div class="form-group">-->
-                                <!--                                        <label><input type="checkbox"> Marketplace</label>-->
-                                <!--                                    </div>-->
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Post</label>
-                                    <input type="number" class="form-control" placeholder="0">
-                                </div>
-                            </div>
-                            <!-- Second row of checkboxes -->
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Delay Post</label>
-                                    <input type="number" class="form-control" placeholder="0">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Follower Friends</label>
-                                    <input type="number" class="form-control" placeholder="Number">
-                                </div>
-                                <div class="form-group">
-                                    <label><input type="checkbox"> Delay Post</label>
-                                    <input type="number" class="form-control" placeholder="Seconds">
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Buttons -->
-                        <!--                        <div class="row">-->
-                        <!--                            <div class="col-md-3">-->
-                        <!--                                <button type="button" class="btn btn-primary btn-block">POST</button>-->
-                        <!--                            </div>-->
-                        <!--                            <div class="col-md-3">-->
-                        <!--                                <button type="button" class="btn btn-danger btn-block">STOP</button>-->
-                        <!--                            </div>-->
-                        <!--                        </div>-->
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Account Table -->
-<!--        <div class="col-md-4">-->
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-<!--                    <form>-->
-<!--                        <div class="row">-->
-<!--                            &lt;!&ndash; First row of checkboxes &ndash;&gt;-->
-<!--                            <div class="col-sm-6">-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Watch Video</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Minutes">-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash;                                    <div class="form-group">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                        <label><input type="checkbox"> Marketplace</label>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Like Post</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Likes">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Scroll</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Minutes">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            &lt;!&ndash; Second row of checkboxes &ndash;&gt;-->
-<!--                            <div class="col-sm-6">-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Mute</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Minutes">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Follower Friends</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Number">-->
-<!--                                </div>-->
-<!--                                <div class="form-group">-->
-<!--                                    <label><input type="checkbox"> Delay Post</label>-->
-<!--                                    <input type="number" class="form-control" placeholder="Seconds">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <!-- Buttons -->
-            <div class="row">
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-primary btn-block">START</button>
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-danger btn-block">STOP</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Search Filter Section -->
     <div class="filter-section">
@@ -182,199 +16,210 @@
             <div class="row">
                 <!-- Combo box for filtering by category -->
                 <div class="col-md-2">
-                    <label for="category">Filter By:</label>
-                    <select id="category" name="category" class="form-control">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category" name="category">
                         <option value="">All</option>
-                        <option value="name">Name</option>
+                        <option value="Category1">Short</option>
+                        <option value="Category1">Monetization</option>
+                        <option value="Category2">Traffic</option>
+
                     </select>
                 </div>
 
                 <!-- Text box for searching -->
                 <div class="col-md-3">
                     <label for="search">Search:</label>
-                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">
+                    <input class="form-control" id="search" name="search" placeholder="Enter keyword..." type="text">
                 </div>
 
                 <!-- Submit Button for filtering -->
+                <!--                <div class="col-md-2">-->
+                <!--                    <label>&nbsp;</label>-->
+                <!--                    <button class="btn btn-primary btn-block" type="submit">Filter</button>-->
+                <!--                </div>-->
+                <!-- Submit Button for filtering -->
                 <div class="col-md-2">
                     <label>&nbsp;</label>
-                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
+                    <button class="btn btn-primary btn-block" id="addNewBtn" type="button">Add New</button>
+                    <!-- Dialog Form for Adding New Bank -->
+
+                </div>
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <a href="{{ url_for('gmail_register')}}">
+                        <button class="btn btn-primary btn-block" type="button" id="registerAccountBtn">FARM REG</button>
+                    </a>
                 </div>
             </div>
         </form>
     </div>
-
+    <div class="modal" id="addGmailModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Gmail</h5>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="gmailForm">
+                        <div class="mb-2">
+                            <label class="form-label" for="name">Name</label>
+                            <input class="form-control" id="name" required type="text">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="gmail">Gmail</label>
+                            <input class="form-control" id="gmail" required type="text">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" id="password" required type="text">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="verify">Verify Phone/Gmail(Optional)</label>
+                            <input class="form-control" id="verify" type="phone">
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="status">Status</label>
+                            <select class="form-control" id="status">
+                                <option value="Enable">Enable</option>
+                                <option value="Disable">Disable</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Cancel</button>
+                    <button class="btn btn-primary" id="submitGmailBtn" type="button">Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Table for Account Data -->
-    <table class="table table-bordered mt-4">
+    <table class="table table-hover mt-4">
         <thead>
         <tr>
+            <th><input type="checkbox" id="checkAll"></th>
             <th>No</th>
+            <th>Device</th>
+            <th>Name</th>
             <th>Gmail</th>
-            <th>Password</th>
+
+<!--            <th>Password</th>-->
+            <th>Socials</th>
+<!--            <th>Verify(Phone/Gmail)</th>-->
             <th>Created Date</th>
             <th>Status</th>
             <th>Description</th>
-            <th>Action</th> <!-- Add Action column -->
+            <!--            <th>Action</th> &lt;!&ndash; Add Action column &ndash;&gt;-->
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>01</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
+
+
+        {% for item in items %}
+        <tr data-id="{{item.id}}">
+            <td><input type="checkbox" class="row-checkbox"></td>
+            <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
+                <span class="badge badge-success">{{ item.device.name }}</span>
             </td>
-        </tr>
-        <tr>
-            <td>02</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
+            <td>{{ item.name }}</td>
+            <td><a href="#">{{ item.gmail }}</a></td>
+<!--            <td>{{ item.password }}</td>-->
             <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
+                <i class="fab fa-facebook-square"></i>
+                &nbsp;
+                <i class="fab fa-tiktok"></i>
+                &nbsp;
+                <i class="fab fa-youtube"></i>
+                &nbsp;
+                <i class="fab fa-instagram"></i>
             </td>
-        </tr>
-        <tr>
-            <td>02</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
+<!--            <td>{{ item.verify }}</td>-->
+            <td>{{ item.created_date }}</td>
             <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
+                <span class="badge badge-success">{{ item.status }}</span>
             </td>
+            <td>{{ item.description }}</td>
+            <!--            <td>-->
+            <!--                <a class="btn btn-sm btn-primary" href="{{ url_for('edit_item', id=item.id) }}">Edit</a>-->
+            <!--                <a class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}"-->
+            <!--                   href="{{ url_for('delete_item', id=item.id) }}">Delete</a>-->
+            <!--                <a class="btn btn-sm btn-info" href="{{ url_for('view_item', id=item.id) }}">View</a>-->
+            <!--            </td>-->
         </tr>
+        {% else %}
         <tr>
-            <td>03</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
-            </td>
+            <td colspan="9">No items found</td>
         </tr>
-        <tr>
-            <td>04</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
-            </td>
-        </tr>
-        <tr>
-            <td>05</td>
-            <td>www.newslatebaby.com</td>
-            <td>10</td>
-            <td>18-09-2024</td>
-            <td>Posted</td>
-            <td>Upload articles to website ready.</td>
-            <td>
-                <a class="btn btn-sm btn-primary" href="#">Copy Links</a>
-                <a class="btn btn-sm btn-danger delete-btn" data-id=""
-                   href="#">Delete</a>
-                <a class="btn btn-sm btn-info" href="#">View</a>
-            </td>
-        </tr>
-        <!--        {% for item in items %}-->
-        <!--        <tr>-->
-        <!--            <td>{{ loop.index + (pagination.page - 1) * pagination.per_page }}</td>-->
-        <!--            <td>{{ item.name }}</td>-->
-        <!--            <td>{{ item.password }}</td>-->
-        <!--            <td>{{ item.verified }}</td>-->
-        <!--            <td>{{ item.created_date }}</td>-->
-        <!--            <td>{{ item.status }}</td>-->
-        <!--            <td>{{ item.description }}</td>-->
-        <!--            <td>-->
-        <!--                <a href="{{ url_for('edit_item', id=item.id) }}" class="btn btn-sm btn-primary">Edit</a>-->
-        <!--                <a href="{{ url_for('delete_item', id=item.id) }}" class="btn btn-sm btn-danger delete-btn" data-id="{{ item.id }}">Delete</a>-->
-        <!--                <a href="{{ url_for('view_item', id=item.id) }}" class="btn btn-sm btn-info">View</a>-->
-        <!--            </td>-->
-        <!--        </tr>-->
-        <!--        {% else %}-->
-        <!--        <tr>-->
-        <!--            <td colspan="9">No items found</td>-->
-        <!--        </tr>-->
-        <!--        {% endfor %}-->
+        {% endfor %}
         </tbody>
     </table>
+
+    <!-- Pagination Controls -->
+    {% if pagination.pages > 1 %}
     <nav aria-label="Page navigation">
         <ul class="pagination">
-
-
-            <li class="page-item active">
-                <a class="page-link" href="/facebook/page/1">1</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/2">2</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/3">3</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/4">4</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/5">5</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/10">10</a>
-            </li>
-
-
-            <li class="page-item ">
-                <a class="page-link" href="/facebook/page/11">11</a>
-            </li>
-
-
+            {% if pagination.has_prev %}
             <li class="page-item">
-                <a class="page-link" href="/facebook/page/2">Next</a>
+                <a class="page-link" href="{{ url_for('gmail_list', page=pagination.prev_num) }}">Previous</a>
             </li>
+            {% endif %}
 
+            {% for page_num in pagination.iter_pages() %}
+            {% if page_num %}
+            <li class="page-item {{ 'active' if page_num == pagination.page else '' }}">
+                <a class="page-link" href="{{ url_for('gmail_list', page=page_num) }}">{{ page_num }}</a>
+            </li>
+            {% endif %}
+            {% endfor %}
+
+            {% if pagination.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="{{ url_for('gmail_list', page=pagination.next_num) }}">Next</a>
+            </li>
+            {% endif %}
         </ul>
     </nav>
+    {% endif %}
+
+    <!-- Context Menu -->
+    <div class="dropdown-menu shadow" id="context-menu" style="position: absolute; display: none;">
+        <a class="dropdown-item" href="#" id="context-edit">
+            <i class="fas fa-check"></i> Select
+        </a>
+        <a class="dropdown-item" href="#" id="context-unselect">
+            <i class="fas fa-times"></i> Unselect
+        </a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-view">
+            <i class="fas fa-eye"></i> View Detail
+        </a>
+        <a class="dropdown-item" href="#" id="context-create">
+            <i class="fas fa-icons"></i> Create Social Account
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-copy">
+            <i class="fas fa-times"></i> Copy
+        </a>
+        <a class="dropdown-item" href="#" id="context-delete">
+            <i class="fas fa-trash-alt"></i> Delete
+        </a>
+        <a class="dropdown-item" href="#" id="context-update">
+            <i class="fas fa-marker"></i> Update Gmail info
+        </a>
+
+
+    </div>
+
 </div>
 {% endblock %}
 {% block scripts %}
-<script>
-        $(document).ready(function() {
+<script src="/static/AdminLTE/js/gmail_accounts.js"></script>
 
-        });
-    </script>
 {% endblock %}

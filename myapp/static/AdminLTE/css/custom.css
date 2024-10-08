@@ -1,0 +1,66 @@
+/* General Context Menu Styling */
+#context-menu {
+    min-width: 180px;
+    z-index: 9999;
+    border-radius: .25rem;
+}
+
+#context-menu .dropdown-item {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+#context-menu .dropdown-item i {
+    margin-right: 8px;
+}
+
+/* Submenu Styling */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-item:after {
+    content: "\f0da"; /* Font Awesome right arrow */
+    float: right;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.dropdown-submenu > ul {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-left: 0.1rem;
+    border-radius: .25rem;
+    background-color: white;
+    box-shadow: 0 0.15rem 0.35rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-submenu:hover > ul {
+    display: block;
+}
+
+.dropdown-submenu ul .dropdown-item {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+/* Optional: Hover effects for context menu */
+#context-menu .dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+.toggle-password, .toggle-twofa {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #007bff;
+}
+
+.toggle-password:hover, .toggle-twofa:hover {
+    color: #0056b3;
+}
+
+.password-mask, .twofa-mask {
+    font-family: 'Courier New', Courier, monospace;
+}

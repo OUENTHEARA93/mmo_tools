@@ -4,6 +4,17 @@ import yt_dlp
 
 from myapp import app
 
+# Utility function to format file sizes
+def format_file_size(size_in_bytes):
+    """Format the file size from bytes to MB or GB."""
+    if size_in_bytes == 0 or size_in_bytes is None:
+        return "Unknown"
+    size_in_mb = size_in_bytes / (1024 * 1024)
+    if size_in_mb < 1024:
+        return f"{size_in_mb:.2f} MB"
+    else:
+        size_in_gb = size_in_mb / 1024
+        return f"{size_in_gb:.2f} GB"
 
 @app.context_processor
 def utility_processor():

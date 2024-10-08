@@ -1,11 +1,11 @@
 {% extends 'layout.html' %}
 {% block menu_open_facebook %} menu-close {% endblock %}
-{% block active_instagram %}
+{% block active_tiktok %}
 active
 {% endblock %}
 {% block content %}
 <div class="content-header">
-    <h1>INSTAGRAM MANAGEMENT</h1>
+    <h1>TIKTOK MANAGEMENT</h1>
 </div>
 
 <div class="content">
@@ -121,9 +121,23 @@ active
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="#" id="context-monetizepage">
-            <i class="fas fa-dollar-sign"></i> Upload Videos
+            <i class="fas fa-dollar-sign"></i> Check Monetization
+        </a>
+        <a class="dropdown-item" href="#" id="context-selectpage">
+            <i class="fas fa-copyright"></i> Check Copyright
+        </a>
+
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-delete1">
+            <i class="fas fa-trash-alt"></i> Delete All Video
         </a>
         <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-view">
+            <i class="fas fa-life-ring"></i> Upload Video
+        </a>
+        <a class="dropdown-item" href="#" id="context-config">
+            <i class="fas fa-calendar-alt"></i> Schedule Post
+        </a>
         <a class="dropdown-item" href="#" id="context-change-device">
             <i class="fas fa-marker"></i> Update Account info
         </a>
@@ -154,7 +168,7 @@ active
             <td><input type="checkbox" class="row-checkbox"></td>
             <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>
             <td>
-                <span class="badge badge-success">{{ item.account.device.name }}</span>
+                <span class="badge badge-success">{{ item.device.name }}</span>
             </td>
             <td>{{ item.name }}</td>
             <td>{{ format_number(item.follower) }}</td>
@@ -166,6 +180,7 @@ active
                 <span class="badge badge-success">{{ item.status }}</span>
             </td>
             <td>{{ item.description }}</td>
+
         </tr>
         {% else %}
         <tr>
@@ -179,6 +194,5 @@ active
 </div>
 {% endblock %}
 {% block scripts %}
-<script src="/static/AdminLTE/js/instagram_account.js"></script>
+<script src="/static/AdminLTE/js/tiktok.js"></script>
 {% endblock %}
-

@@ -1,0 +1,363 @@
+{% extends 'layout.html' %}
+{% block menu_open_facebook %} menu-close {% endblock %}
+{% block active_instagram %}
+active
+{% endblock %}
+{% block content %}
+<div class="content-header">
+    <h1>INSTAGRAM MANAGEMENT</h1>
+</div>
+
+<div class="content">
+
+    <!-- Search Filter Section -->
+    <div class="filter-section">
+        <form id="filter-form" method="GET">
+            <div class="row">
+                <!-- Combo box for filtering by category -->
+                <div class="col-md-2">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category" name="category">
+                        <option value="">All</option>
+                        <option value="Category1">Short</option>
+                        <option value="Category1">Monetization</option>
+                        <option value="Category2">Traffic</option>
+
+                    </select>
+                </div>
+
+                <!-- Text box for searching -->
+                <div class="col-md-3">
+                    <label for="search">Search:</label>
+                    <input class="form-control" id="search" name="search" placeholder="Enter keyword..." type="text">
+                </div>
+
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary btn-block" type="submit">Filter</button>
+                </div>
+                <!-- Submit Button for filtering -->
+                <div class="col-md-2">
+                    <label>&nbsp;</label>
+                    <button class="btn btn-primary btn-block" id="addNewBtn" type="button">Add New</button>
+                    <!-- Dialog Form for Adding New Bank -->
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal" id="addWebsiteModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Domain</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="gmailForm">
+                        <div class="mb-2">
+                            <label for="domain" class="form-label">Domain</label>
+                            <input type="text" class="form-control" id="domain" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="hosting" class="form-label">Hosting</label>
+                            <input type="text" class="form-control" id="hosting" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="gmail" class="form-label">Gmail</label>
+                            <input type="text" class="form-control" id="gmail" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="text" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="link" class="form-label">Link</label>
+                            <input type="text" class="form-control" id="link" required>
+                        </div>
+                        <div class="mb-2">
+                            <label for="earning" class="form-label">Earning</label>
+                            <input type="text" class="form-control" id="earning">
+                        </div>
+                        <div class="mb-2">
+                            <label for="adsnetwork" class="form-label">Ads Network</label>
+                            <select class="form-control" id="adsnetwork">
+                                <option value="Adsterra">Adsterra</option>
+                                <option value="Mgid">Mgid</option>
+                                <option value="Adskeeper">Adskeeper</option>
+                                <option value="CPA">CPA</option>
+                                <option value="Adsense">Adsense</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="form-control" id="status">
+                                <option value="Enable">Enable</option>
+                                <option value="Disable">Disable</option>
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="submitWebsiteBtn">Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="context-menu" class="dropdown-menu shadow" style="position: absolute; display: none;">
+        <a class="dropdown-item" href="#" id="context-edit">
+            <i class="fas fa-check"></i> Select
+        </a>
+        <a class="dropdown-item" href="#" id="context-edit12">
+            <i class="fas fa-times"></i> Unselect
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-monetizepage">
+            <i class="fas fa-dollar-sign"></i> Upload Videos
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#" id="context-change-device">
+            <i class="fas fa-marker"></i> Update Account info
+        </a>
+
+    </div>
+
+    <!-- Table for Account Data -->
+    <table class="table table-hover mt-4">
+        <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th>No</th>
+            <th>Device</th>
+            <th>Name</th>
+            <th>Follower</th>
+<!--            <th>Gmail</th>-->
+<!--            <th>Password</th>-->
+            <th>Monetization</th>
+            <th>Earning</th>
+            <th>Status</th>
+            <th>Description</th>
+<!--            <th>Action</th> &lt;!&ndash; Add Action column &ndash;&gt;-->
+        </tr>
+        </thead>
+        <tbody>
+<!--        {% for item in items %}-->
+<!--        <tr>-->
+<!--            <td><input type="checkbox"></td>-->
+<!--            <td>{{ '%03d' % (loop.index + (pagination.page - 1) * pagination.per_page) }}</td>-->
+<!--            <td>-->
+<!--                <span class="badge badge-success">{{ item.device.name }}</span>-->
+<!--            </td>-->
+<!--            <td>{{ item.name }}</td>-->
+<!--            <td>{{ format_number(item.follower) }}</td>-->
+<!--            <td>{{ item.monetization }}</td>-->
+<!--            <td>-->
+<!--                <span class="badge badge-warning">${{ item.earning }}</span>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <span class="badge badge-success">{{ item.status }}</span>-->
+<!--            </td>-->
+<!--            <td>{{ item.description }}</td>-->
+<!--        </tr>-->
+<!--        {% else %}-->
+<!--        <tr>-->
+<!--            <td colspan="9">No items found</td>-->
+<!--        </tr>-->
+<!--        {% endfor %}-->
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+        $(document).ready(function() {
+
+        });
+</script>
+{% endblock %}
+
+<!--{% extends 'layout.html' %}-->
+<!--{% block menu_open_facebook %}menu-close{% endblock %}-->
+<!--{% block active_instagram %}-->
+<!--    active-->
+<!--{% endblock %}-->
+<!--{% block content %}-->
+<!--<div class="content-header">-->
+<!--    <h1>INSTAGRAM EARNING</h1>-->
+<!--</div>-->
+
+<!--<div class="content">-->
+<!--    &lt;!&ndash; Form Section &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-body">-->
+<!--                        <form>-->
+<!--                            <div class="row">-->
+<!--                                &lt;!&ndash; First row of checkboxes &ndash;&gt;-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Watch Video</label>-->
+<!--                                        <input type="number" class="form-control" placeholder="Minutes">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Marketplace</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Like Post</label>-->
+<!--                                        <input type="number" class="form-control" placeholder="Likes">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Newsfeed</label>-->
+<!--                                        <input type="number" class="form-control" placeholder="Minutes">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                                &lt;!&ndash; Second row of checkboxes &ndash;&gt;-->
+<!--                                <div class="col-sm-6">-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Mute</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Add Friends</label>-->
+<!--                                        <input type="number" class="form-control" placeholder="Number">-->
+<!--                                    </div>-->
+<!--                                    <div class="form-group">-->
+<!--                                        <label><input type="checkbox"> Delay Post</label>-->
+<!--                                        <input type="number" class="form-control" placeholder="Seconds">-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Buttons &ndash;&gt;-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-3">-->
+<!--                                    <button type="button" class="btn btn-primary btn-block">START</button>-->
+<!--                                </div>-->
+<!--                                <div class="col-md-3">-->
+<!--                                    <button type="button" class="btn btn-danger btn-block">STOP</button>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Account Table &ndash;&gt;-->
+<!--            <div class="col-md-6">-->
+<!--                <div class="card">-->
+<!--                    <div class="card-header">-->
+<!--                        <h3 class="card-title">Device Management</h3>-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <table class="table table-bordered">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th>No.</th>-->
+<!--                                <th>Name</th>-->
+<!--                                <th>IP Address</th>-->
+<!--                                <th>Status</th>-->
+<!--                                <th>Action</th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            &lt;!&ndash; Dynamic data rows go here &ndash;&gt;-->
+<!--                            <tr>-->
+<!--                                <td>01</td>-->
+<!--                                <td>Samsung S10</td>-->
+<!--                                <td>192.168.1.3</td>-->
+<!--                                <td><span class="bg-success">Live</span></td>-->
+<!--                                <td>-->
+<!--                                    <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>-->
+<!--                                </td> &lt;!&ndash; Add Action column &ndash;&gt;-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>02</td>-->
+<!--                                <td>Samsung S11</td>-->
+<!--                                <td>192.168.1.2</td>-->
+<!--                                <td><span class="bg-success">Live</span></td>-->
+<!--                                <td>-->
+<!--                                    <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>-->
+<!--                                </td> &lt;!&ndash; Add Action column &ndash;&gt;-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td>03</td>-->
+<!--                                <td>Samsung S10+</td>-->
+<!--                                <td>192.168.1.4</td>-->
+<!--                                <td><span class="bg-success">Live</span></td>-->
+<!--                                <td>-->
+<!--                                    <a class="btn btn-sm btn-danger delete-btn" data-id="1" href="/delete/1">Disconnect</a>-->
+<!--                                </td> &lt;!&ndash; Add Action column &ndash;&gt;-->
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    &lt;!&ndash; Search Filter Section &ndash;&gt;-->
+<!--    <div class="filter-section">-->
+<!--        <form id="filter-form" method="GET">-->
+<!--            <div class="row">-->
+<!--                &lt;!&ndash; Combo box for filtering by category &ndash;&gt;-->
+<!--                <div class="col-md-4">-->
+<!--                    <label for="category">Filter By:</label>-->
+<!--                    <select id="category" name="category" class="form-control">-->
+<!--                        <option value="">All</option>-->
+<!--                        <option value="name">Name</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Text box for searching &ndash;&gt;-->
+<!--                <div class="col-md-4">-->
+<!--                    <label for="search">Search:</label>-->
+<!--                    <input type="text" id="search" name="search" class="form-control" placeholder="Enter keyword...">-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash; Submit Button for filtering &ndash;&gt;-->
+<!--                <div class="col-md-2">-->
+<!--                    <label>&nbsp;</label>-->
+<!--                    <button type="submit" class="btn btn-primary btn-block">Filter</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Table Section &ndash;&gt;-->
+<!--    <table class="table table-bordered mt-4">-->
+<!--        <thead>-->
+<!--        <tr>-->
+<!--            <th>No</th>-->
+<!--            <th>Name</th>-->
+<!--            <th>Gmail</th>-->
+<!--            <th>Password</th>-->
+<!--            <th>Followers</th>-->
+<!--            <th>Created Date</th>-->
+<!--            <th>Monetization</th>-->
+<!--            <th>Description</th>-->
+<!--        </tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        {% for account in accounts %}-->
+<!--        <tr>-->
+
+<!--        </tr>-->
+<!--        {% endfor %}-->
+<!--        </tbody>-->
+<!--    </table>-->
+
+<!--    &lt;!&ndash; System Performance Section &ndash;&gt;-->
+<!--    &lt;!&ndash;    <div class="mt-4">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <label>CPU Performance:</label><br>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <label>RAM Performance:</label>&ndash;&gt;-->
+<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
+<!--</div>-->
+<!--{% endblock %}-->
